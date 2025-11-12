@@ -6,9 +6,24 @@
   <title>404 - ページが見つかりません - Camp Site</title>
   <link rel="stylesheet" href="assets/css/normalize.css">
   <link rel="stylesheet" href="assets/css/main.css">
-</head>
+ </head>
 <body>
-  <div id="header-placeholder"></div>
+  <header class="site-header">
+  <div class="container">
+    <div class="header-inner">
+      <div class="site-branding">
+        <a href="index.html" class="site-title">Camp Site</a>
+      </div>
+
+      <nav class="site-nav" aria-label="メインナビゲーション">
+        <a href="index.html">ホーム</a>
+        <a href="categories.html">カテゴリ</a>
+        <a href="about.html">About</a>
+        <a href="contact.html">お問い合わせ</a>
+      </nav>
+    </div>
+  </div>
+  </header>
 
   <main>
     <div class="error-page">
@@ -19,7 +34,34 @@
     </div>
   </main>
 
-  <div id="footer-placeholder"></div>
+  <footer class="site-footer">
+  <div class="container">
+    <div class="footer-content">
+      <div class="footer-section">
+        <h3>Camp Site</h3>
+        <p>キャンプ場レビューとアウトドア情報を発信するブログ</p>
+      </div>
+
+      <div class="footer-section">
+        <h3>リンク</h3>
+        <ul class="footer-links">
+          <li><a href="about.html">About</a></li>
+          <li><a href="contact.html">お問い合わせ</a></li>
+          <li><a href="privacy.html">プライバシーポリシー</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <p>&copy; <span id="current-year"></span> Camp Site. All rights reserved.</p>
+    </div>
+  </div>
+  </footer>
+
+  <script>
+    document.getElementById('current-year').textContent = new Date().getFullYear();
+  </script>
+
   <script src="js/common.js"></script>
 </body>
 </html>

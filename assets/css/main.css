@@ -3,11 +3,12 @@
 ======================================== */
 :root {
   /* カラーパレット - キャンプ×自然をテーマに */
-  --color-primary: #2d5016;
-  --color-primary-light: #4a7c2c;
-  --color-secondary: #a8d08d;
-  --color-accent: #ff6b35;
-  --color-accent-subtle: #ffb088;
+  /* すみわたる配色（澄んだブルー/ミント基調） */
+  --color-primary: #2fa7c8;           /* 透きとおる青緑 */
+  --color-primary-light: #8ad7e6;     /* 明るい水色 */
+  --color-secondary: #cfeef3;         /* ごく淡いミント */
+  --color-accent: #5ac8fa;            /* アクセントの空色 */
+  --color-accent-subtle: #b8e9ff;     /* 淡いアクセント */
 
   /* テキストカラー */
   --color-text: #1a1a1a;
@@ -24,9 +25,9 @@
   /* UIカラー */
   --color-border: #e0e5dc;
   --color-border-light: #eef2e9;
-  --color-link: #2d5016;
-  --color-link-hover: #4a7c2c;
-  --color-success: #4a7c2c;
+  --color-link: var(--color-primary);
+  --color-link-hover: #1e8baa;
+  --color-success: #1e8baa;
   --color-warning: #f59e0b;
   --color-error: #dc2626;
 
@@ -92,9 +93,9 @@ body {
   color: var(--color-text);
   background-color: var(--color-bg);
   background-image:
-    radial-gradient(1200px 400px at 10% -10%, rgba(168, 208, 141, 0.15), transparent 60%),
-    radial-gradient(900px 350px at 110% 10%, rgba(74, 124, 44, 0.12), transparent 60%),
-    linear-gradient(180deg, rgba(240, 244, 236, 0.6), rgba(255,255,255,0) 40%);
+    radial-gradient(1200px 400px at 10% -10%, rgba(157, 226, 255, 0.18), transparent 60%),
+    radial-gradient(900px 350px at 110% 10%, rgba(90, 200, 250, 0.12), transparent 60%),
+    linear-gradient(180deg, rgba(245, 251, 255, 0.7), rgba(255,255,255,0) 40%);
   margin: 0;
   padding: 0;
 }
@@ -231,6 +232,7 @@ main {
   z-index: 100;
   box-shadow: var(--shadow-md);
   backdrop-filter: blur(10px);
+  transition: transform var(--transition-base), background-color var(--transition-fast);
 }
 
 .header-inner {
@@ -323,6 +325,11 @@ main {
   }
 }
 
+/* ヘッダー自動非表示 */
+.site-header.hide {
+  transform: translateY(-100%);
+}
+
 /* ========================================
    フッター
 ======================================== */
@@ -345,7 +352,7 @@ main {
   left: -10%;
   width: 120%;
   height: 120px;
-  background: radial-gradient(60% 60% at 50% 50%, rgba(45,80,22,0.15), transparent 70%);
+  background: radial-gradient(60% 60% at 50% 50%, rgba(47,167,200,0.15), transparent 70%);
   transform: rotate(-2deg);
 }
 
@@ -401,8 +408,8 @@ main {
   margin-bottom: var(--spacing-3xl);
   padding: var(--spacing-2xl) 0 var(--spacing-xl);
   background:
-    linear-gradient(180deg, rgba(255,255,255,0.0) 0%, rgba(255,255,255,0.0) 20%),
-    linear-gradient(135deg, rgba(45,80,22,0.75) 0%, rgba(74,124,44,0.6) 60%, rgba(255,107,53,0.2) 100%),
+    linear-gradient(180deg, rgba(255,255,255,0.05) 0%, rgba(255,255,255,0.0) 30%),
+    linear-gradient(135deg, rgba(47,167,200,0.65) 0%, rgba(138,215,230,0.50) 60%, rgba(186, 235, 255, 0.25) 100%),
     url('../img/rectangle-banner-1280x670.webp');
   background-size: cover;
   background-position: center;
@@ -500,7 +507,7 @@ main {
 ======================================== */
 .post-card {
   background: linear-gradient(var(--color-bg-elevated), var(--color-bg-elevated)) padding-box,
-              linear-gradient(135deg, rgba(45,80,22,0.35), rgba(168,208,141,0.25)) border-box;
+              linear-gradient(135deg, rgba(47,167,200,0.30), rgba(186,235,255,0.22)) border-box;
   border: 1px solid transparent;
   border-radius: var(--radius-lg);
   overflow: hidden;
@@ -1128,7 +1135,7 @@ main {
 .form-group textarea:focus {
   outline: none;
   border-color: var(--color-primary);
-  box-shadow: 0 0 0 3px rgba(45, 80, 22, 0.1);
+  box-shadow: 0 0 0 3px rgba(47, 167, 200, 0.15);
 }
 
 .form-group textarea {
@@ -1253,6 +1260,57 @@ html {
 }
 
 /* ========================================
+   スクロール連動アニメーション
+======================================== */
+.reveal {
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity var(--transition-base), transform var(--transition-base);
+}
+
+.reveal.from-left {
+  transform: translateX(-24px);
+}
+
+.reveal.from-right {
+  transform: translateX(24px);
+}
+
+.reveal.zoom {
+  transform: scale(0.96);
+}
+
+.reveal.in {
+  opacity: 1;
+  transform: none;
+}
+
+/* スクロール進捗バー */
+.scroll-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 3px;
+  width: 0;
+  z-index: 999;
+  background: linear-gradient(90deg, var(--color-primary), var(--color-accent));
+  box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+}
+
+/* 動きを控えめに（アクセシビリティ） */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation: none !important;
+    transition: none !important;
+    scroll-behavior: auto !important;
+  }
+  .reveal {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}
+
+/* ========================================
    プリント最適化
 ======================================== */
 @media print {
@@ -1274,41 +1332,5 @@ html {
   a {
     color: #000;
     text-decoration: underline;
-  }
-}
-
-/* ========================================
-   ダークモード（自動）
-======================================== */
-@media (prefers-color-scheme: dark) {
-  :root {
-    --color-text: #f3f3f3;
-    --color-text-secondary: #cfcfcf;
-    --color-text-light: #a8a8a8;
-    --color-bg: #0f1410;
-    --color-bg-secondary: #131a14;
-    --color-bg-tertiary: #182018;
-    --color-bg-elevated: #101610;
-    --color-border: #243024;
-    --color-border-light: #1c261c;
-  }
-
-  body {
-    background-image:
-      radial-gradient(1200px 400px at 10% -10%, rgba(168, 208, 141, 0.08), transparent 60%),
-      radial-gradient(900px 350px at 110% 10%, rgba(74, 124, 44, 0.08), transparent 60%),
-      linear-gradient(180deg, rgba(16,22,16, 0.6), rgba(0,0,0,0) 40%);
-  }
-
-  .site-header {
-    box-shadow: 0 10px 30px rgba(0,0,0,0.35);
-  }
-
-  .post-card:hover {
-    box-shadow: 0 20px 40px rgba(0,0,0,0.35);
-  }
-
-  .page-header {
-    box-shadow: 0 30px 60px rgba(0,0,0,0.35);
   }
 }

@@ -43,7 +43,18 @@
 
       <div class="quick-links">
         <a href="categories.html" class="quick-link">カテゴリから探す</a>
+        <a href="tags.html" class="quick-link">タグから探す</a>
       </div>
+
+      <div class="container" style="max-width: 800px; margin: 0 auto var(--spacing-xl);">
+        <div class="form-group">
+          <label for="post-search"><strong>記事検索</strong></label>
+          <input id="post-search" type="search" placeholder="キーワード（例：テント、防寒、関西 など）">
+          <p style="color: var(--color-text-light); font-size: 0.9rem; margin-top: var(--spacing-xs);">入力すると下の一覧が絞り込まれます</p>
+        </div>
+      </div>
+
+      <h2>最新記事</h2>
 
       <div class="posts-grid">
         <!-- 記事カード1 -->
@@ -172,6 +183,45 @@
           </div>
         </article>
       </div>
+
+      <section aria-labelledby="popular-tags" class="container" style="margin-top: var(--spacing-2xl);">
+        <h2 id="popular-tags">人気のタグ</h2>
+        <div class="tags-cloud">
+          <a href="tags.html#キャンプ場" class="tag-item">キャンプ場 <span class="tag-count">(1)</span></a>
+          <a href="tags.html#紅葉" class="tag-item">紅葉 <span class="tag-count">(1)</span></a>
+          <a href="tags.html#初心者" class="tag-item">初心者 <span class="tag-count">(2)</span></a>
+          <a href="tags.html#レシピ" class="tag-item">レシピ <span class="tag-count">(1)</span></a>
+          <a href="tags.html#防寒" class="tag-item">防寒 <span class="tag-count">(1)</span></a>
+          <a href="tags.html#秋冬キャンプ" class="tag-item">秋冬キャンプ <span class="tag-count">(1)</span></a>
+          <a href="tags.html#ギアレビュー" class="tag-item">ギアレビュー <span class="tag-count">(1)</span></a>
+        </div>
+      </section>
+
+      <section aria-labelledby="browse-categories" class="container" style="margin-top: var(--spacing-2xl);">
+        <h2 id="browse-categories">カテゴリで探す</h2>
+        <div class="categories-list">
+          <div class="category-item">
+            <h2><a href="categories.html#関東">関東</a></h2>
+            <p>紅葉や温浴施設が充実のキャンプ場</p>
+          </div>
+          <div class="category-item">
+            <h2><a href="categories.html#関西">関西</a></h2>
+            <p>家族で楽しめる高規格サイト</p>
+          </div>
+          <div class="category-item">
+            <h2><a href="categories.html#ギア">ギア</a></h2>
+            <p>防寒・テント選びなど道具の話</p>
+          </div>
+          <div class="category-item">
+            <h2><a href="categories.html#料理">料理</a></h2>
+            <p>簡単で美味しいキャンプ飯</p>
+          </div>
+          <div class="category-item">
+            <h2><a href="categories.html#ノウハウ">ノウハウ</a></h2>
+            <p>設営や準備のコツを解説</p>
+          </div>
+        </div>
+      </section>
     </div>
   </main>
 
