@@ -408,8 +408,7 @@ main {
   margin-bottom: var(--spacing-3xl);
   padding: var(--spacing-2xl) 0 var(--spacing-xl);
   background:
-    linear-gradient(180deg, rgba(255,255,255,0.05) 0%, rgba(255,255,255,0.0) 30%),
-    linear-gradient(135deg, rgba(47,167,200,0.65) 0%, rgba(138,215,230,0.50) 60%, rgba(186, 235, 255, 0.25) 100%),
+    linear-gradient(180deg, rgba(0,0,0,0.10) 0%, rgba(0,0,0,0.45) 100%),
     url('../img/rectangle-banner-1280x670.webp');
   background-size: cover;
   background-position: center;
@@ -421,6 +420,7 @@ main {
 .page-header h1 {
   margin-bottom: var(--spacing-sm);
   color: var(--color-text-inverted);
+  text-shadow: 0 2px 8px rgba(0,0,0,0.35);
 }
 
 .page-header p {
