@@ -17,7 +17,22 @@
   <link rel="stylesheet" href="assets/css/main.css">
 </head>
 <body>
-  <div id="header-placeholder"></div>
+  <header class="site-header">
+  <div class="container">
+    <div class="header-inner">
+      <div class="site-branding">
+        <a href="index.html" class="site-title">Camp Site</a>
+      </div>
+
+      <nav class="site-nav" aria-label="メインナビゲーション">
+        <a href="index.html">ホーム</a>
+        <a href="categories.html">カテゴリ</a>
+        <a href="about.html">About</a>
+        <a href="contact.html">お問い合わせ</a>
+      </nav>
+    </div>
+  </div>
+</header>
 
   <main>
     <div class="container">
@@ -93,11 +108,100 @@
             </div>
           </div>
         </article>
+
+        <!-- 記事カード4 -->
+        <article class="post-card">
+          <a href="posts/2025-11-11-solo-camp-basics.html" class="post-card-image">
+            <img src="assets/img/rectangle-banner-1280x670.webp" alt="ソロキャンプ入門のサムネイル画像" loading="lazy">
+          </a>
+
+          <div class="post-card-content">
+            <h2 class="post-card-title">
+              <a href="posts/2025-11-11-solo-camp-basics.html">ソロキャンプ入門｜装備と設営の基本</a>
+            </h2>
+
+            <p class="post-card-excerpt">初めてのソロキャンプに向けた装備チェックリストと設営の基本を分かりやすく解説。失敗しないポイントをまとめました。</p>
+
+            <div class="post-card-meta">
+              <time datetime="2025-11-11">2025.11.11</time>
+              <span class="meta-separator">|</span>
+              <a href="categories.html#ノウハウ" class="card-category">ノウハウ</a>
+            </div>
+          </div>
+        </article>
+
+        <!-- 記事カード5 -->
+        <article class="post-card">
+          <a href="posts/2025-11-06-kansai-family-camps.html" class="post-card-image">
+            <img src="assets/img/image-07-1160x780.jpg" alt="関西の高規格キャンプ場のサムネイル画像" loading="lazy">
+          </a>
+
+          <div class="post-card-content">
+            <h2 class="post-card-title">
+              <a href="posts/2025-11-06-kansai-family-camps.html">関西の高規格キャンプ場3選｜家族で安心</a>
+            </h2>
+
+            <p class="post-card-excerpt">家族連れに人気の関西エリア高規格キャンプ場を3つ厳選。設備やアクセス、子連れに嬉しいポイントを紹介します。</p>
+
+            <div class="post-card-meta">
+              <time datetime="2025-11-06">2025.11.06</time>
+              <span class="meta-separator">|</span>
+              <a href="categories.html#関西" class="card-category">関西</a>
+            </div>
+          </div>
+        </article>
+
+        <!-- 記事カード6 -->
+        <article class="post-card">
+          <a href="posts/2025-11-04-tent-selection-guide.html" class="post-card-image">
+            <img src="assets/img/stock-74612537.avif" alt="テント選び完全ガイドのサムネイル画像" loading="lazy">
+          </a>
+
+          <div class="post-card-content">
+            <h2 class="post-card-title">
+              <a href="posts/2025-11-04-tent-selection-guide.html">テント選び完全ガイド｜形状・素材・設営性</a>
+            </h2>
+
+            <p class="post-card-excerpt">ドーム・ワンポール・トンネルなどテントの形状や素材、設営性と耐候性の観点から選び方を徹底解説。</p>
+
+            <div class="post-card-meta">
+              <time datetime="2025-11-04">2025.11.04</time>
+              <span class="meta-separator">|</span>
+              <a href="categories.html#ギア" class="card-category">ギア</a>
+            </div>
+          </div>
+        </article>
       </div>
     </div>
   </main>
 
-  <div id="footer-placeholder"></div>
+  <footer class="site-footer">
+  <div class="container">
+    <div class="footer-content">
+      <div class="footer-section">
+        <h3>Camp Site</h3>
+        <p>キャンプ場レビューとアウトドア情報を発信するブログ</p>
+      </div>
+
+      <div class="footer-section">
+        <h3>リンク</h3>
+        <ul class="footer-links">
+          <li><a href="about.html">About</a></li>
+          <li><a href="contact.html">お問い合わせ</a></li>
+          <li><a href="privacy.html">プライバシーポリシー</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <p>&copy; <span id="current-year"></span> Camp Site. All rights reserved.</p>
+    </div>
+  </div>
+</footer>
+
+<script>
+  document.getElementById('current-year').textContent = new Date().getFullYear();
+</script>
 
   <script src="js/common.js"></script>
 </body>
