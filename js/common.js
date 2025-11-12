@@ -15,8 +15,8 @@ async function loadComponent(elementId, filePath) {
 
 // ページ読み込み時に共通部分を挿入
 document.addEventListener('DOMContentLoaded', async function() {
-  await loadComponent('header-placeholder', '/includes/header.html');
-  await loadComponent('footer-placeholder', '/includes/footer.html');
+  await loadComponent('header-placeholder', 'includes/header.html');
+  await loadComponent('footer-placeholder', 'includes/footer.html');
 
   // ナビゲーションのアクティブ状態を設定
   setActiveNav();
