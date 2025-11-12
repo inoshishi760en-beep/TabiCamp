@@ -17,7 +17,7 @@
 ├── about.html          # Aboutページ
 ├── contact.html        # お問い合わせ
 ├── categories.html     # カテゴリ一覧
-├── tags.html           # タグ一覧
+├── (削除) tags.html    # タグ一覧は廃止
 ├── 404.html            # エラーページ
 ├── assets/             # CSS・画像
 │   ├── css/
