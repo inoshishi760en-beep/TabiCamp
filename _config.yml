@@ -2,7 +2,7 @@
 title: "Camp Site"
 description: "キャンプ場レビューとアウトドア情報を発信するブログ"
 url: "https://yourusername.github.io"
-baseurl: "/camp-site"
+baseurl: ""
 author:
   name: "Your Name"
   email: "your.email@example.com"
@@ -45,6 +45,9 @@ exclude:
   - Gemfile.lock
   - README.md
   - LICENSE
+  - vendor
+  - .bundle
+  - node_modules
 
 # Defaults
 defaults:
