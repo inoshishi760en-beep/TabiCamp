@@ -8,5 +8,6 @@ vendor/
 .bundle/
 .jekyll-cache/
 tmp/
+.claude/
 vendor/
 .bundle/
