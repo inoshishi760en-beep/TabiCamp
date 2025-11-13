@@ -1,6 +1,11 @@
 // 共通部分（header, footer）を読み込む関数
 function getRootPrefix() {
   try {
+    // 1) meta[name="site-root"] があれば最優先
+    const meta = document.querySelector('meta[name="site-root"]');
+    if (meta && meta.content != null) {
+      return meta.content;
+    }
     // Prefer deriving from main.css link to be robust across local/GH Pages
     const mainLink = document.querySelector('link[href*="assets/css/main.css"]');
     if (mainLink) {
@@ -29,6 +34,8 @@ async function loadComponent(elementId, filePath) {
     const element = document.getElementById(elementId);
     if (element) {
       element.innerHTML = html;
+      // 読み込み後にナビ/フッターのリンクへ接頭辞を付与
+      prefixInternalLinks();
     }
   } catch (error) {
     console.error(`Error loading component from ${filePath}:`, error);
@@ -59,6 +66,8 @@ document.addEventListener('DOMContentLoaded', async function() {
   setupParallaxHeader();
   // トップページ検索の初期化
   setupPostSearch();
+  // 念のため、初期ロード時にもリンクを補正
+  prefixInternalLinks();
 });
 
 // 現在のページに応じてナビゲーションのアクティブ状態を設定
@@ -101,6 +110,22 @@ function setupBackToTop() {
 
   btn.addEventListener('click', () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+}
+
+// 内部リンクへルート接頭辞を付与
+function prefixInternalLinks() {
+  const prefix = getRootPrefix();
+  const anchors = document.querySelectorAll('.site-nav a, .footer-links a');
+  anchors.forEach(a => {
+    const href = a.getAttribute('href') || '';
+    if (!href) return;
+    // 外部/フラグメント/プロトコル付きは対象外
+    if (/^(https?:|mailto:|tel:|#)/.test(href)) return;
+    // すでに相対接頭辞がある場合はそのまま
+    if (/^(\.\.\/|\.\/)/.test(href)) return;
+    // 先頭に接頭辞を付与
+    a.setAttribute('href', prefix + href);
   });
 }
 

@@ -28,17 +28,17 @@ http://localhost:8000 にアクセス
 - **記事（共置き）**: `posts/YYYY-MM-DD-slug/index.html` と同ディレクトリの `images/` に記事専用画像を格納
   - 例: `posts/2025-11-12-first-camp/index.html`, `posts/2025-11-12-first-camp/images/cover.webp`
 - **共通パーツ**: `includes/header.html`, `includes/footer.html`
-  - トップレベルの固定ページはインライン埋め込み
-  - 記事ページはプレースホルダ + JS で読み込み（後述）
+  - すべてのページでプレースホルダ（`#header-placeholder`, `#footer-placeholder`）+ JS で読み込み
+  - `<meta name="site-root" content="…">` を各ページの `<head>` に設け、`js/common.js` が参照
 - **アセット**: CSS は `assets/css/`、共有画像は `assets/img/`（OGP用などの汎用のみ）
 - **JavaScript**: `js/common.js`
 
 ### ヘッダー・フッターの更新方法
 
-- トップレベル固定ページ（index.html など）はインライン埋め込みのため、必要に応じて各ページへ手動反映。
-- 記事ページは `<div id="header-placeholder"></div>` / `<div id="footer-placeholder"></div>` を設置しており、`js/common.js` が `includes/*.html` を動的読込。`includes/` を更新すれば記事へ一括反映される。
+- 全ページに `<div id="header-placeholder"></div>` / `<div id="footer-placeholder"></div>` を設置し、`js/common.js` が `includes/*.html` を動的読込。`includes/` を更新すれば全ページへ一括反映される。
+- ルート解決は `<meta name="site-root">` を使用（トップは空、記事は `../../`）。
 
-相対パスはページ階層に応じて調整（トップレベル: `href="index.html"`、記事: `href="../index.html"`）。
+相対パスはページ階層に応じて調整（トップレベル: `href="index.html"`、記事: `href="../../index.html"`）。
 
 ### CSSカスタムプロパティ
 
@@ -74,14 +74,11 @@ http://localhost:8000 にアクセス
 - 日本語ロケール（`ja_JP`）
 - og:image（1280x670）
 
-## 記事の追加方法
+## 記事追加の運用（AI担当）
 
-1. `posts/YYYY-MM-DD-slug/` ディレクトリを作成し、`index.html` を配置（共置き）
-2. 同ディレクトリに `images/` を作成し、本文・カード用の画像を格納
-3. 下の「ブログ記事作成ガイドライン（重要）」に従いテンプレートを組む
-4. `index.html` の `.posts-grid` セクションに記事カードを追加（カード画像は `posts/.../images/...` を参照）
-5. `categories.html` の該当カテゴリセクションにリンクを追加（`posts/.../index.html`）
-6. 必要に応じて `tags.html` のタグクラウドと記事一覧も更新（手動）
+- 新規記事の作成・画像配置・トップ/カテゴリ/タグの更新は、開発用AIが行います。
+- 依頼時に提供いただきたい情報：タイトル、日付（YYYY-MM-DD）、カテゴリ、タグ（任意）、抜粋、カバー/本文画像、スラッグ（任意）。
+- AIは `posts/YYYY-MM-DD-slug/` を作成し、`index.html` と `images/` をスキャフォールド、必要箇所を自動更新します。
 
 ### 記事カードの構造
 
@@ -114,16 +111,17 @@ http://localhost:8000 にアクセス
 
 ## 制約事項
 
-- **ビルドプロセスなし**: 全HTMLを手動メンテナンス
-- **純粋な静的サイト**: サーバーサイド処理・API呼び出しなし
-- **共通パーツの同期**: 変更を全ページに手動コピー必要
-- **相対パス**: ディレクトリ階層に応じて慎重に管理
+- **ビルドプロセスなし**: 静的配信（GitHub Pages）。
+- **純粋な静的サイト**: サーバーサイド処理・API呼び出しなし。
+- **共通パーツは動的読込**: includes更新は全ページに即時反映。
+- **相対パス**: `<meta name="site-root">` を併用して揺れを抑制。
 
 ## ブログ記事作成ガイドライン（重要）
 
 新規記事は次の要件を満たしてください。これにより既存記事と同じCSS/JS挙動・見た目が適用されます。
 
 - 置き場所: `posts/YYYY-MM-DD-slug/index.html`（共置き）、画像は同フォルダの `images/` 配下
+- 必須メタ: `<meta name="site-root" content="../../">`
 - CSSの読み込み（`<head>` 内・順序維持）:
   - `<link rel="stylesheet" href="../../assets/css/normalize.css">`
   - `<link rel="stylesheet" href="../../assets/css/main.css">`
@@ -151,6 +149,7 @@ http://localhost:8000 にアクセス
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>記事タイトル</title>
   <meta name="description" content="記事の要約">
+  <meta name="site-root" content="../../">
   <link rel="stylesheet" href="../../assets/css/normalize.css">
   <link rel="stylesheet" href="../../assets/css/main.css">
 </head>
@@ -159,7 +158,7 @@ http://localhost:8000 にアクセス
   <main class="container">
     <nav class="breadcrumbs" aria-label="パンくずリスト">
       <ol>
-        <li><a href="../index.html">ホーム</a></li>
+        <li><a href="../../index.html">ホーム</a></li>
         <li>記事</li>
       </ol>
     </nav>
@@ -169,7 +168,7 @@ http://localhost:8000 にアクセス
 
     <header class="post-header">
       <h1>記事タイトル</h1>
-      <p class="post-meta">YYYY.MM.DD <span class="meta-separator">|</span> <a href="../categories.html#カテゴリ" class="post-category">カテゴリ</a></p>
+      <p class="post-meta">YYYY.MM.DD <span class="meta-separator">|</span> <a href="../../categories.html#カテゴリ" class="post-category">カテゴリ</a></p>
     </header>
 
     <article class="post-content">

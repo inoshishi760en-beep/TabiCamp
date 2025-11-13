@@ -1,13 +1,14 @@
 # Camp Site
 
-キャンプ場レビューとアウトドア情報を発信する静的HTMLサイト
+キャンプ場レビューとアウトドア情報を発信する静的HTMLブログ
 
 ## 特徴
 
-- **ピュアHTML/CSS/JS**: ビルド不要の静的サイト
+- **ビルド不要**: 純粋なHTML/CSS/JavaScriptのみで構築
+- **記事画像の共置**: 各記事ディレクトリに画像を配置し管理が容易
+- **動的ヘッダー/フッター**: JavaScript で共通パーツを読み込み、一括管理
 - **レスポンシブデザイン**: モバイル・タブレット・デスクトップ対応
-- **SEO対応**: 適切なメタタグ設定
-- **高速**: サーバーサイド処理なし、CDN配信に最適
+- **SEO対応**: Open Graph・Twitter Card対応、適切なメタタグ設定
 
 ## ファイル構成
 
@@ -17,37 +18,39 @@
 ├── about.html          # Aboutページ
 ├── contact.html        # お問い合わせ
 ├── categories.html     # カテゴリ一覧
-├── (削除) tags.html    # タグ一覧は廃止
+├── tags.html          # タグ一覧
 ├── 404.html            # エラーページ
-├── assets/             # CSS・画像
+├── privacy.html        # プライバシーポリシー
+├── assets/
 │   ├── css/
-│   │   ├── normalize.css
-│   │   └── main.css
+│   │   ├── normalize.css  # 最適化済みリセットCSS
+│   │   └── main.css       # メインスタイル（カスタムプロパティ使用）
 │   └── img/
-├── includes/           # 共通HTML部品
+│       └── rectangle-banner-1280x670.webp  # OGP用画像
+├── includes/           # 共通HTML部品（JS動的読込）
 │   ├── header.html
 │   └── footer.html
-├── js/                 # JavaScript
-│   └── common.js
-└── posts/              # 記事（共置き）
+├── js/
+│   └── common.js      # 共通機能（ヘッダー/フッター読込、アニメーション等）
+└── posts/              # 記事（共置きパターン）
     └── YYYY-MM-DD-slug/
-        ├── index.html      # 記事本体（ヘッダー/フッターはプレースホルダ+JS）
-        └── images/         # 記事専用画像（カード/本文用）
+        ├── index.html  # 記事本体
+        └── images/     # 記事専用画像（カード用・本文用）
 ```
 
 ## ローカル開発
 
-シンプルなHTTPサーバーで起動：
+HTTPサーバーを起動してブラウザで確認：
 
 ```bash
 # Python 3
 python3 -m http.server 8000
 
-# Node.js (http-server)
+# または Node.js (http-server)
 npx http-server -p 8000
 ```
 
-ブラウザで http://localhost:8000 にアクセス
+http://localhost:8000 にアクセス
 
 ## GitHub Pagesで公開
 
@@ -59,10 +62,14 @@ npx http-server -p 8000
 
 ## 記事の追加方法
 
-1. `posts/YYYY-MM-DD-slug/` を作成し、`index.html` を配置（本文は `.post-content` 内）
-2. 同フォルダに `images/` を作成し、記事画像を格納（本文は `./images/...` で参照）
-3. `index.html` に記事カードを追加（画像は `posts/.../images/...` を参照）
-4. 該当カテゴリ・タグページを更新（リンクは `posts/.../index.html`）
+1. **記事ディレクトリを作成**: `posts/YYYY-MM-DD-slug/` を作成
+2. **記事HTMLを作成**: `posts/YYYY-MM-DD-slug/index.html` を配置（既存記事を参考に）
+3. **画像を配置**: 同フォルダに `images/` を作成し、記事画像を格納
+4. **トップページに追加**: `index.html` の `.posts-grid` に記事カードを追加
+5. **カテゴリページを更新**: `categories.html` の該当カテゴリセクションに記事リンクを追加
+6. **（任意）タグページを更新**: `tags.html` のタグクラウドと記事一覧を更新
+
+詳細は [CLAUDE.md](./CLAUDE.md) の「ブログ記事作成ガイドライン」を参照。
 
 ## ライセンス
 
