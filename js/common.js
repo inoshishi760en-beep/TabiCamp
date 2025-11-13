@@ -1,7 +1,29 @@
 // 共通部分（header, footer）を読み込む関数
+function getRootPrefix() {
+  try {
+    // Prefer deriving from main.css link to be robust across local/GH Pages
+    const mainLink = document.querySelector('link[href*="assets/css/main.css"]');
+    if (mainLink) {
+      const href = mainLink.getAttribute('href') || '';
+      const marker = 'assets/css/main.css';
+      const pos = href.indexOf(marker);
+      if (pos >= 0) {
+        return href.slice(0, pos); // e.g. '../../' or ''
+      }
+    }
+    // Fallback: compute by path depth
+    const segs = window.location.pathname.split('/').filter(Boolean);
+    const depth = Math.max(0, segs.length - 2);
+    return '../'.repeat(depth);
+  } catch (_) {
+    return '';
+  }
+}
+
 async function loadComponent(elementId, filePath) {
   try {
-    const response = await fetch(filePath);
+    const prefix = getRootPrefix();
+    const response = await fetch(prefix + filePath);
     if (!response.ok) throw new Error(`Failed to load ${filePath}`);
     const html = await response.text();
     const element = document.getElementById(elementId);

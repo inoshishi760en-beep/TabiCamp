@@ -29,7 +29,10 @@
 │   └── footer.html
 ├── js/                 # JavaScript
 │   └── common.js
-└── posts/              # 記事（今後追加）
+└── posts/              # 記事（共置き）
+    └── YYYY-MM-DD-slug/
+        ├── index.html      # 記事本体（ヘッダー/フッターはプレースホルダ+JS）
+        └── images/         # 記事専用画像（カード/本文用）
 ```
 
 ## ローカル開発
@@ -56,9 +59,10 @@ npx http-server -p 8000
 
 ## 記事の追加方法
 
-1. `posts/` ディレクトリにHTMLファイルを作成
-2. `index.html` に記事カードを追加
-3. 該当カテゴリ・タグページを更新
+1. `posts/YYYY-MM-DD-slug/` を作成し、`index.html` を配置（本文は `.post-content` 内）
+2. 同フォルダに `images/` を作成し、記事画像を格納（本文は `./images/...` で参照）
+3. `index.html` に記事カードを追加（画像は `posts/.../images/...` を参照）
+4. 該当カテゴリ・タグページを更新（リンクは `posts/.../index.html`）
 
 ## ライセンス
 
