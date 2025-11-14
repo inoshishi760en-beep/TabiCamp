@@ -25,18 +25,81 @@ function getRootPrefix() {
   }
 }
 
+// file:// で開いた場合など、fetch が使えない環境向けのインラインテンプレート
+function getInlineComponentHtml(elementId) {
+  if (elementId === 'header-placeholder') {
+    return `
+<header class="site-header">
+  <div class="container">
+    <div class="header-inner">
+      <div class="site-branding">
+        <a href="index.html" class="site-title">Camp Site</a>
+      </div>
+
+      <nav class="site-nav" aria-label="メインナビゲーション">
+        <a href="index.html">ホーム</a>
+        <a href="categories.html">カテゴリ</a>
+        <a href="about.html">このサイトについて</a>
+        <a href="contact.html">お問い合わせ</a>
+      </nav>
+    </div>
+  </div>
+</header>`;
+  }
+
+  if (elementId === 'footer-placeholder') {
+    return `
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-content">
+      <div class="footer-section">
+        <h3>Camp Site</h3>
+        <p>キャンプ場レビューとアウトドア情報を発信するブログ</p>
+      </div>
+
+      <div class="footer-section">
+        <h3>リンク</h3>
+        <ul class="footer-links">
+          <li><a href="about.html">このサイトについて</a></li>
+          <li><a href="contact.html">お問い合わせ</a></li>
+          <li><a href="privacy.html">プライバシーポリシー</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <p>&copy; <span id="current-year"></span> Camp Site. All rights reserved.</p>
+    </div>
+  </div>
+</footer>`;
+  }
+
+  return '';
+}
+
 async function loadComponent(elementId, filePath) {
   try {
+    const element = document.getElementById(elementId);
+    if (!element) return;
+
     const prefix = getRootPrefix();
+
+    // file:// で開いた場合は fetch が制限されるブラウザがあるため、インラインテンプレートを優先
+    if (window.location.protocol === 'file:') {
+      const inlineHtml = getInlineComponentHtml(elementId);
+      if (inlineHtml) {
+        element.innerHTML = inlineHtml;
+        prefixInternalLinks();
+        return;
+      }
+    }
+
     const response = await fetch(prefix + filePath);
     if (!response.ok) throw new Error(`Failed to load ${filePath}`);
     const html = await response.text();
-    const element = document.getElementById(elementId);
-    if (element) {
-      element.innerHTML = html;
-      // 読み込み後にナビ/フッターのリンクへ接頭辞を付与
-      prefixInternalLinks();
-    }
+    element.innerHTML = html;
+    // 読み込み後にナビ/フッターのリンクへ接頭辞を付与
+    prefixInternalLinks();
   } catch (error) {
     console.error(`Error loading component from ${filePath}:`, error);
   }
@@ -116,7 +179,7 @@ function setupBackToTop() {
 // 内部リンクへルート接頭辞を付与
 function prefixInternalLinks() {
   const prefix = getRootPrefix();
-  const anchors = document.querySelectorAll('.site-nav a, .footer-links a');
+  const anchors = document.querySelectorAll('.site-nav a, .footer-links a, .site-branding a');
   anchors.forEach(a => {
     const href = a.getAttribute('href') || '';
     if (!href) return;
