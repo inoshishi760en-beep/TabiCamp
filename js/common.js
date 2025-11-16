@@ -127,7 +127,6 @@ document.addEventListener('DOMContentLoaded', async function() {
   setupScrollProgress();
   setupGroupedListCollapse();
   setupParallaxHeader();
-  setupPostSearch();
   prefixInternalLinks();
 });
 
@@ -365,40 +364,6 @@ function setupParallaxHeader() {
   window.addEventListener('scroll', onScroll, { passive: true });
   window.addEventListener('resize', onScroll);
   update();
-}
-
-function setupPostSearch() {
-  const input = document.getElementById('post-search');
-  const grid = document.querySelector('.posts-grid');
-  if (!input || !grid) return;
-
-  const cards = Array.from(grid.querySelectorAll('.post-card'));
-
-  let emptyEl = document.getElementById('search-empty');
-  if (!emptyEl) {
-    emptyEl = document.createElement('p');
-    emptyEl.id = 'search-empty';
-    emptyEl.textContent = '該当する記事がありません';
-    emptyEl.style.display = 'none';
-    emptyEl.style.color = 'var(--color-text-light)';
-    emptyEl.style.textAlign = 'center';
-    emptyEl.style.margin = 'var(--spacing-xl) 0';
-    grid.after(emptyEl);
-  }
-
-  input.addEventListener('input', () => {
-    const q = input.value.trim().toLowerCase();
-    let visible = 0;
-    cards.forEach(card => {
-      const title = card.querySelector('.post-card-title')?.textContent?.toLowerCase() || '';
-      const excerpt = card.querySelector('.post-card-excerpt')?.textContent?.toLowerCase() || '';
-      const category = card.querySelector('.card-category')?.textContent?.toLowerCase() || '';
-      const hit = q === '' || title.includes(q) || excerpt.includes(q) || category.includes(q);
-      card.style.display = hit ? '' : 'none';
-      if (hit) visible++;
-    });
-    emptyEl.style.display = visible === 0 ? '' : 'none';
-  });
 }
 
 function generateTOC() {
