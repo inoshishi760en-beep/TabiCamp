@@ -1,7 +1,5 @@
-// 共通部分（header, footer）を読み込む関数
-function getRootPrefix() {
+﻿function getRootPrefix() {
   try {
-    // 1) meta[name="site-root"] があれば最優先
     const meta = document.querySelector('meta[name="site-root"]');
     if (meta && meta.content != null) {
       return meta.content;
@@ -25,7 +23,37 @@ function getRootPrefix() {
   }
 }
 
-// file:// で開いた場合など、fetch が使えない環境向けのインラインテンプレート
+function ensureFaviconLinks() {
+  try {
+    if (!document || !document.head) return;
+    const prefix = getRootPrefix();
+    const config = [
+      { rel: 'icon', type: 'image/png', sizes: '32x32', href: 'assets/img/favicon-32.png' },
+      { rel: 'icon', type: 'image/png', sizes: '48x48', href: 'assets/img/favicon-48.png' },
+      { rel: 'apple-touch-icon', sizes: '180x180', href: 'assets/img/favicon-180.png' },
+      { rel: 'icon', type: 'image/x-icon', href: 'favicon.ico' },
+    ];
+
+    config.forEach(def => {
+      const selectorParts = [`link[rel="${def.rel}"]`];
+      if (def.sizes) selectorParts.push(`[sizes="${def.sizes}"]`);
+      if (def.type) selectorParts.push(`[type="${def.type}"]`);
+      const selector = selectorParts.join('');
+      const existing = document.head.querySelector(selector);
+      const link = existing || document.createElement('link');
+      link.rel = def.rel;
+      if (def.type) link.type = def.type;
+      if (def.sizes) link.sizes = def.sizes;
+      link.href = `${prefix}${def.href}`;
+      if (!existing) {
+        document.head.appendChild(link);
+      }
+    });
+  } catch (error) {
+    console.error('Failed to ensure favicon links', error);
+  }
+}
+
 function getInlineComponentHtml(elementId) {
   if (elementId === 'header-placeholder') {
     return `
@@ -52,7 +80,6 @@ function getInlineComponentHtml(elementId) {
   </div>
 </header>`;
   }
-
   if (elementId === 'footer-placeholder') {
     return `
 <footer class="site-footer">
@@ -60,7 +87,7 @@ function getInlineComponentHtml(elementId) {
     <div class="footer-content">
       <div class="footer-section">
         <h3>Camp Site</h3>
-        <p>キャンプ場レビューとアウトドア情報を発信するブログ</p>
+        <p>キャンプ場レビューとアウトドア情報を発信するブログです。</p>
       </div>
 
       <div class="footer-section">
@@ -80,40 +107,8 @@ function getInlineComponentHtml(elementId) {
 </footer>`;
   }
 
-  return '';
-}
-
-async function loadComponent(elementId, filePath) {
-  try {
-    const element = document.getElementById(elementId);
-    if (!element) return;
-
-    const prefix = getRootPrefix();
-
-    // file:// で開いた場合は fetch が制限されるブラウザがあるため、インラインテンプレートを優先
-    if (window.location.protocol === 'file:') {
-      const inlineHtml = getInlineComponentHtml(elementId);
-      if (inlineHtml) {
-        element.innerHTML = inlineHtml;
-        prefixInternalLinks();
-        return;
-      }
-    }
-
-    const response = await fetch(prefix + filePath);
-    if (!response.ok) throw new Error(`Failed to load ${filePath}`);
-    const html = await response.text();
-    element.innerHTML = html;
-    // 読み込み後にナビ/フッターのリンクへ接頭辞を付与
-    prefixInternalLinks();
-  } catch (error) {
-    console.error(`Error loading component from ${filePath}:`, error);
-  }
-}
-
-// ページ読み込み時に共通部分を挿入
 document.addEventListener('DOMContentLoaded', async function() {
-  // Inline化していない旧ページのみ読み込む
+  ensureFaviconLinks();
   if (document.getElementById('header-placeholder')) {
     await loadComponent('header-placeholder', 'includes/header.html');
   }
@@ -122,26 +117,20 @@ document.addEventListener('DOMContentLoaded', async function() {
   }
   updateFooterYear();
 
-  // ナビゲーションのアクティブ状態を設定
   setActiveNav();
   setupNavToggle();
 
-  // トップへ戻るボタンを設置
   setupBackToTop();
 
-  // スクロール連動の動き
   setupScrollAnimations();
   setupHeaderAutoHide();
   setupScrollProgress();
   setupGroupedListCollapse();
   setupParallaxHeader();
-  // トップページ検索の初期化
   setupPostSearch();
-  // 念のため、初期ロード時にもリンクを補正
   prefixInternalLinks();
 });
 
-// カテゴリ/タグ一覧の「最新N件以外を折りたたむ」
 function setupGroupedListCollapse() {
   const MAX_VISIBLE = 5;
   const groups = document.querySelectorAll('.categories-list .category-item');
@@ -157,7 +146,6 @@ function setupGroupedListCollapse() {
 
     const countEl = group.querySelector('p');
     if (countEl) {
-      countEl.textContent = `${total}件の記事（最新${MAX_VISIBLE}件まで表示）`;
     }
 
     items.forEach((li, index) => {
@@ -186,7 +174,6 @@ function setupGroupedListCollapse() {
   });
 }
 
-// 現在のページに応じてナビゲーションのアクティブ状態を設定
 function setActiveNav() {
   const getPage = (path) => {
     const seg = path.split('?')[0].split('#')[0].split('/').filter(Boolean);
@@ -205,7 +192,6 @@ function setActiveNav() {
   });
 }
 
-// モバイル用ハンバーガーメニュー
 function setupNavToggle() {
   const toggle = document.querySelector('.nav-toggle');
   const nav = document.querySelector('.site-nav');
@@ -233,11 +219,10 @@ function setupNavToggle() {
   });
 }
 
-// トップへ戻るボタン
 function setupBackToTop() {
   const btn = document.createElement('button');
   btn.className = 'back-to-top';
-  btn.setAttribute('aria-label', 'トップへ戻る');
+  btn.setAttribute('aria-label', 'トップへ戻めE);
   btn.innerHTML = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5l7 7-1.41 1.41L13 9.83V19h-2V9.83L6.41 13.41 5 12z"/></svg>';
   document.body.appendChild(btn);
 
@@ -257,29 +242,25 @@ function setupBackToTop() {
   });
 }
 
-// 内部リンクへルート接頭辞を付与
 function prefixInternalLinks() {
   const prefix = getRootPrefix();
   const anchors = document.querySelectorAll('.site-nav a, .footer-links a, .site-branding a');
   anchors.forEach(a => {
     const href = a.getAttribute('href') || '';
     if (!href) return;
-    // 外部/フラグメント/プロトコル付きは対象外
+    // 外部/フラグメンチEプロトコル付きは対象夁E
     if (/^(https?:|mailto:|tel:|#)/.test(href)) return;
-    // すでに相対接頭辞がある場合はそのまま
     if (/^(\.\.\/|\.\/)/.test(href)) return;
-    // 先頭に接頭辞を付与
+    // 先頭に接頭辞を付丁E
     a.setAttribute('href', prefix + href);
   });
 }
 
-// フッターの年号を更新（innerHTML 追加だと埋め込み<script>が実行されないため）
 function updateFooterYear() {
   const el = document.getElementById('current-year');
   if (el) el.textContent = new Date().getFullYear();
 }
 
-// スクロールアニメーション（IntersectionObserver）
 function setupScrollAnimations() {
   const targets = [
     ...document.querySelectorAll('.post-card'),
@@ -298,7 +279,6 @@ function setupScrollAnimations() {
     else el.classList.add('zoom');
   });
 
-  // reduced motion の場合は即時表示
   const prefersReduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   if (prefersReduce || ('IntersectionObserver' in window === false)) {
     targets.forEach(el => el.classList.add('in'));
@@ -317,7 +297,7 @@ function setupScrollAnimations() {
   targets.forEach(el => io.observe(el));
 }
 
-// ヘッダーの自動隠し/表示
+// ヘッダーの自動隠ぁE表示
 function setupHeaderAutoHide() {
   const header = document.querySelector('.site-header');
   if (!header) return;
@@ -360,7 +340,6 @@ function setupScrollProgress() {
   update();
 }
 
-// ヒーロー（ページヘッダー）のパララックス
 function setupParallaxHeader() {
   const hero = document.querySelector('.page-header');
   if (!hero) return;
@@ -368,10 +347,9 @@ function setupParallaxHeader() {
   let ticking = false;
   function update() {
     const rect = hero.getBoundingClientRect();
-    // ビューポート内にあるときのみ更新
     if (rect.bottom > 0 && rect.top < window.innerHeight) {
       const factor = Math.min(1, Math.max(0, (window.innerHeight - rect.top) / (window.innerHeight + rect.height)));
-      const y = Math.round((factor * 20) - 10); // -10px 〜 +10px 程度
+      const y = Math.round((factor * 20) - 10); // -10px 、E+10px 程度
       hero.style.backgroundPosition = `center ${y}px`;
     }
     ticking = false;
@@ -389,7 +367,6 @@ function setupParallaxHeader() {
   update();
 }
 
-// トップページの簡易検索フィルタ
 function setupPostSearch() {
   const input = document.getElementById('post-search');
   const grid = document.querySelector('.posts-grid');
@@ -424,7 +401,6 @@ function setupPostSearch() {
   });
 }
 
-// 目次（TOC）を自動生成する関数
 function generateTOC() {
   const content = document.querySelector('.post-content');
   const tocContainer = document.querySelector('.table-of-contents ul');
@@ -440,11 +416,9 @@ function generateTOC() {
   }
 
   headings.forEach((heading, index) => {
-    // 見出しにIDを付与
     const id = `heading-${index}`;
     heading.id = id;
 
-    // 目次リストアイテムを作成
     const li = document.createElement('li');
     const a = document.createElement('a');
     a.href = `#${id}`;
@@ -469,8 +443,11 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   });
 
-  // 記事ページの場合、TOCを生成
   if (document.querySelector('.post-content')) {
     generateTOC();
   }
 });
+
+
+
+
