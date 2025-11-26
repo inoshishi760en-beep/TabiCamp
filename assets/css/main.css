@@ -1,28 +1,28 @@
-/* ========================================
-   変数・基本設定
+﻿/* ========================================
+   螟画焚繝ｻ蝓ｺ譛ｬ險ｭ螳・
 ======================================== */
 :root {
-  /* カラーパレット - キャンプ×自然をテーマに */
-  /* すみわたる配色（澄んだブルー/ミント基調） */
-  --color-primary: #2fa7c8;           /* 透きとおる青緑 */
-  --color-primary-light: #8ad7e6;     /* 明るい水色 */
-  --color-secondary: #cfeef3;         /* ごく淡いミント */
-  --color-accent: #5ac8fa;            /* アクセントの空色 */
-  --color-accent-subtle: #b8e9ff;     /* 淡いアクセント */
+  /* 繧ｫ繝ｩ繝ｼ繝代Ξ繝・ヨ - 繧ｭ繝｣繝ｳ繝療苓・辟ｶ繧偵ユ繝ｼ繝槭↓ */
+  /* 縺吶∩繧上◆繧矩・濶ｲ・域ｾ・ｓ縺繝悶Ν繝ｼ/繝溘Φ繝亥渕隱ｿ・・*/
+  --color-primary: #2fa7c8;           /* 騾上″縺ｨ縺翫ｋ髱堤ｷ・*/
+  --color-primary-light: #8ad7e6;     /* 譏弱ｋ縺・ｰｴ濶ｲ */
+  --color-secondary: #cfeef3;         /* 縺斐￥豺｡縺・Α繝ｳ繝・*/
+  --color-accent: #5ac8fa;            /* 繧｢繧ｯ繧ｻ繝ｳ繝医・遨ｺ濶ｲ */
+  --color-accent-subtle: #b8e9ff;     /* 豺｡縺・い繧ｯ繧ｻ繝ｳ繝・*/
 
-  /* テキストカラー */
+  /* 繝・く繧ｹ繝医き繝ｩ繝ｼ */
   --color-text: #1a1a1a;
   --color-text-secondary: #4a4a4a;
   --color-text-light: #737373;
   --color-text-inverted: #ffffff;
 
-  /* 背景カラー */
+  /* 閭梧勹繧ｫ繝ｩ繝ｼ */
   --color-bg: #ffffff;
   --color-bg-secondary: #f8faf6;
   --color-bg-tertiary: #f0f4ec;
   --color-bg-elevated: #ffffff;
 
-  /* UIカラー */
+  /* UI繧ｫ繝ｩ繝ｼ */
   --color-border: #e0e5dc;
   --color-border-light: #eef2e9;
   --color-link: var(--color-primary);
@@ -31,7 +31,7 @@
   --color-warning: #f59e0b;
   --color-error: #dc2626;
 
-  /* スペーシング - 8pxベース */
+  /* 繧ｹ繝壹・繧ｷ繝ｳ繧ｰ - 8px繝吶・繧ｹ */
   --spacing-xs: 0.5rem;    /* 8px */
   --spacing-sm: 1rem;      /* 16px */
   --spacing-md: 1.5rem;    /* 24px */
@@ -40,12 +40,12 @@
   --spacing-2xl: 4rem;     /* 64px */
   --spacing-3xl: 6rem;     /* 96px */
 
-  /* レイアウト */
+  /* 繝ｬ繧､繧｢繧ｦ繝・*/
   --max-width: 1200px;
   --max-width-narrow: 800px;
   --content-width: 65ch;
 
-  /* ボーダー・シャドウ */
+  /* 繝懊・繝繝ｼ繝ｻ繧ｷ繝｣繝峨え */
   --radius-sm: 6px;
   --radius: 12px;
   --radius-lg: 16px;
@@ -54,12 +54,12 @@
   --shadow-md: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
   --shadow-lg: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
 
-  /* トランジション */
+  /* 繝医Λ繝ｳ繧ｸ繧ｷ繝ｧ繝ｳ */
   --transition-fast: 150ms cubic-bezier(0.4, 0, 0.2, 1);
   --transition-base: 250ms cubic-bezier(0.4, 0, 0.2, 1);
   --transition-slow: 350ms cubic-bezier(0.4, 0, 0.2, 1);
 
-  /* タイポグラフィ */
+  /* 繧ｿ繧､繝昴げ繝ｩ繝輔ぅ */
   --font-sans: 'Noto Sans JP', -apple-system, BlinkMacSystemFont, "Segoe UI", "Hiragino Sans", "Hiragino Kaku Gothic ProN", Meiryo, sans-serif;
   --font-display: 'Noto Sans JP', -apple-system, BlinkMacSystemFont, "Segoe UI", "Hiragino Sans", "Hiragino Kaku Gothic ProN", Meiryo, sans-serif;
   --line-height-tight: 1.25;
@@ -77,7 +77,7 @@
 }
 
 /* ========================================
-   タイポグラフィ
+   繧ｿ繧､繝昴げ繝ｩ繝輔ぅ
 ======================================== */
 html {
   font-size: 16px;
@@ -164,7 +164,7 @@ img {
 }
 
 /* ========================================
-   トップへ戻るボタン
+   繝医ャ繝励∈謌ｻ繧九・繧ｿ繝ｳ
 ======================================== */
 .back-to-top {
   position: fixed;
@@ -202,7 +202,7 @@ img {
 }
 
 /* ========================================
-   レイアウト
+   繝ｬ繧､繧｢繧ｦ繝・
 ======================================== */
 .container {
   max-width: var(--max-width);
@@ -222,7 +222,7 @@ main {
 }
 
 /* ========================================
-   ヘッダー
+   繝倥ャ繝繝ｼ
 ======================================== */
 .site-header {
   background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-light) 100%);
@@ -263,7 +263,7 @@ main {
 }
 
 .nav-toggle {
-  display: none; /* モバイルのみ表示（下のメディアクエリで上書き） */
+  display: none; /* 繝｢繝舌う繝ｫ縺ｮ縺ｿ陦ｨ遉ｺ・井ｸ九・繝｡繝・ぅ繧｢繧ｯ繧ｨ繝ｪ縺ｧ荳頑嶌縺搾ｼ・*/
   width: 40px;
   height: 40px;
   border-radius: 999px;
@@ -389,13 +389,13 @@ main {
   }
 }
 
-/* ヘッダー自動非表示 */
+/* 繝倥ャ繝繝ｼ閾ｪ蜍暮撼陦ｨ遉ｺ */
 .site-header.hide {
   transform: translateY(-100%);
 }
 
 /* ========================================
-   フッター
+   繝輔ャ繧ｿ繝ｼ
 ======================================== */
 .site-footer {
   background-color: var(--color-bg-tertiary);
@@ -461,7 +461,7 @@ main {
 }
 
 /* ========================================
-   ページヘッダー
+   繝壹・繧ｸ繝倥ャ繝繝ｼ
 ======================================== */
 
 .page-header {
@@ -493,7 +493,7 @@ main {
 }
 
 /* ========================================
-   クイックリンク
+   繧ｯ繧､繝・け繝ｪ繝ｳ繧ｯ
 ======================================== */
 .quick-links {
   display: flex;
@@ -547,7 +547,7 @@ main {
 }
 
 /* ========================================
-   記事グリッド
+   險倅ｺ九げ繝ｪ繝・ラ
 ======================================== */
 .posts-grid {
   display: grid;
@@ -564,7 +564,7 @@ main {
 }
 
 /* ========================================
-   記事カード
+   險倅ｺ九き繝ｼ繝・
 ======================================== */
 .post-card {
   background: linear-gradient(var(--color-bg-elevated), var(--color-bg-elevated)) padding-box,
@@ -681,7 +681,7 @@ main {
 }
 
 /* ========================================
-   ページネーション
+   繝壹・繧ｸ繝阪・繧ｷ繝ｧ繝ｳ
 ======================================== */
 .pagination {
   display: flex;
@@ -723,7 +723,7 @@ main {
 }
 
 /* ========================================
-   記事詳細
+   險倅ｺ玖ｩｳ邏ｰ
 ======================================== */
 .post-single {
   margin-bottom: var(--spacing-3xl);
@@ -785,7 +785,7 @@ main {
   color: var(--color-text-inverted);
 }
 
-/* パンくず */
+/* 繝代Φ縺上★ */
 .breadcrumbs {
   margin-bottom: var(--spacing-lg);
   font-size: 0.875rem;
@@ -806,7 +806,7 @@ main {
 }
 
 .breadcrumbs li:not(:last-child)::after {
-  content: "›";
+  content: "窶ｺ";
   margin-left: var(--spacing-xs);
   color: var(--color-border);
 }
@@ -820,7 +820,7 @@ main {
   color: var(--color-primary);
 }
 
-/* 目次 */
+/* 逶ｮ谺｡ */
 .table-of-contents {
   background: linear-gradient(135deg, var(--color-bg-secondary) 0%, var(--color-bg-tertiary) 100%);
   border: 1px solid var(--color-border);
@@ -856,7 +856,7 @@ main {
   padding-left: 4px;
 }
 
-/* 記事本文 */
+/* 險倅ｺ区悽譁・*/
 .post-content {
   margin-bottom: var(--spacing-3xl);
   font-size: 1.0625rem;
@@ -959,7 +959,7 @@ main {
   margin-bottom: var(--spacing-xs);
 }
 
-/* 広告コンテナ */
+/* 蠎・相繧ｳ繝ｳ繝・リ */
 .ad-container {
   margin: var(--spacing-2xl) auto;
   text-align: center;
@@ -968,7 +968,7 @@ main {
   border-radius: var(--radius);
 }
 
-/* タグ */
+/* 繧ｿ繧ｰ */
 .post-tags {
   display: flex;
   flex-wrap: wrap;
@@ -1005,7 +1005,7 @@ main {
   transform: translateY(-2px);
 }
 
-/* 前後記事ナビ */
+/* 蜑榊ｾ瑚ｨ倅ｺ九リ繝・*/
 .post-navigation {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -1065,7 +1065,7 @@ main {
 }
 
 /* ========================================
-   タグ・カテゴリ一覧
+   繧ｿ繧ｰ繝ｻ繧ｫ繝・ざ繝ｪ荳隕ｧ
 ======================================== */
 .tags-cloud {
   display: flex;
@@ -1189,7 +1189,7 @@ main {
   display: none;
 }
 
-/* 戻るリンク */
+/* 謌ｻ繧九Μ繝ｳ繧ｯ */
 .back-link {
   margin-top: var(--spacing-2xl);
   text-align: center;
@@ -1214,7 +1214,7 @@ main {
 }
 
 /* ========================================
-   フォーム
+   繝輔か繝ｼ繝
 ======================================== */
 .contact-form {
   max-width: 600px;
@@ -1283,7 +1283,7 @@ main {
 }
 
 /* ========================================
-   404ページ
+   404繝壹・繧ｸ
 ======================================== */
 .error-page {
   text-align: center;
@@ -1332,7 +1332,7 @@ main {
 }
 
 /* ========================================
-   ユーティリティ
+   繝ｦ繝ｼ繝・ぅ繝ｪ繝・ぅ
 ======================================== */
 .visually-hidden {
   position: absolute;
@@ -1346,14 +1346,14 @@ main {
   border-width: 0;
 }
 
-/* セレクションカラー */
+/* 繧ｻ繝ｬ繧ｯ繧ｷ繝ｧ繝ｳ繧ｫ繝ｩ繝ｼ */
 ::selection {
   background-color: var(--color-primary);
   color: var(--color-text-inverted);
 }
 
 /* ========================================
-   アニメーション
+   繧｢繝九Γ繝ｼ繧ｷ繝ｧ繝ｳ
 ======================================== */
 @keyframes fadeIn {
   from {
@@ -1372,7 +1372,7 @@ main {
 }
 
 /* ========================================
-   スクロール連動アニメーション
+   繧ｹ繧ｯ繝ｭ繝ｼ繝ｫ騾｣蜍輔い繝九Γ繝ｼ繧ｷ繝ｧ繝ｳ
 ======================================== */
 .reveal {
   opacity: 0;
@@ -1397,7 +1397,7 @@ main {
   transform: none;
 }
 
-/* スクロール進捗バー */
+/* 繧ｹ繧ｯ繝ｭ繝ｼ繝ｫ騾ｲ謐励ヰ繝ｼ */
 .scroll-progress {
   position: fixed;
   top: 0;
@@ -1409,7 +1409,7 @@ main {
   box-shadow: 0 2px 6px rgba(0,0,0,0.15);
 }
 
-/* 動きを控えめに（アクセシビリティ） */
+/* 蜍輔″繧呈而縺医ａ縺ｫ・医い繧ｯ繧ｻ繧ｷ繝薙Μ繝・ぅ・・*/
 @media (prefers-reduced-motion: reduce) {
   * {
     animation: none !important;
@@ -1422,6 +1422,104 @@ main {
   }
 }
 
+/* ========================================
+   繝励Μ繝ｳ繝域怙驕ｩ蛹・
+======================================== */
+/* ========================================
+   Guide helper (fixed bottom-right)
+======================================== */
+.guide-helper {
+  position: fixed;
+  right: min(1rem, 4vw);
+  bottom: min(1rem, 4vw);
+  display: flex;
+  align-items: flex-end;
+  gap: var(--spacing-sm);
+  z-index: 50;
+  pointer-events: none;
+}
+
+.guide-avatar {
+  width: clamp(96px, 20vw, 140px);
+  filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.2));
+  pointer-events: auto;
+  cursor: pointer;
+  transition: transform var(--transition-base), filter var(--transition-base);
+}
+
+.guide-avatar:hover,
+.guide-avatar:focus {
+  transform: translateY(-3px) scale(1.02);
+  filter: drop-shadow(0 14px 24px rgba(0, 0, 0, 0.22));
+}
+
+.guide-avatar img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.guide-bubble {
+  position: relative;
+  background: var(--color-bg-elevated);
+  color: var(--color-text);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: var(--spacing-sm) var(--spacing-md);
+  max-width: 240px;
+  font-size: 0.95rem;
+  line-height: 1.5;
+  pointer-events: auto;
+  opacity: 0;
+  transform: translateY(10px);
+  transition: opacity var(--transition-base), transform var(--transition-base);
+}
+
+.guide-bubble.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.guide-bubble::after {
+  content: '';
+  position: absolute;
+  bottom: 10px;
+  right: -10px;
+  width: 0;
+  height: 0;
+  border-top: 10px solid transparent;
+  border-bottom: 10px solid transparent;
+  border-left: 12px solid var(--color-bg-elevated);
+  filter: drop-shadow(0 1px 1px rgba(0, 0, 0, 0.08));
+}
+
+.guide-bubble button.guide-close {
+  position: absolute;
+  top: 6px;
+  right: 8px;
+  background: transparent;
+  border: none;
+  color: var(--color-text-light);
+  font-size: 1.1rem;
+  cursor: pointer;
+}
+
+.guide-bubble button.guide-close:hover {
+  color: var(--color-text);
+}
+
+@media (max-width: 640px) {
+  .guide-helper {
+    right: 0.5rem;
+    bottom: 0.5rem;
+    gap: var(--spacing-xs);
+  }
+  .guide-bubble {
+    max-width: 200px;
+    font-size: 0.9rem;
+  }
+}
 /* ========================================
    プリント最適化
 ======================================== */
@@ -1446,3 +1544,8 @@ main {
     text-decoration: underline;
   }
 }
+
+
+
+
+

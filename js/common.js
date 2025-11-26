@@ -127,6 +127,7 @@ document.addEventListener('DOMContentLoaded', async function() {
   setupScrollProgress();
   setupGroupedListCollapse();
   setupParallaxHeader();
+  setupGuideHelper();
   prefixInternalLinks();
 });
 
@@ -364,6 +365,63 @@ function setupParallaxHeader() {
   window.addEventListener('scroll', onScroll, { passive: true });
   window.addEventListener('resize', onScroll);
   update();
+}
+
+function setupGuideHelper() {
+  try {
+    const prefix = getRootPrefix();
+    const fallback =
+      'data:image/svg+xml;utf8,' +
+      encodeURIComponent(
+        '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 260" role="img" aria-label="camp guide helper"><defs><linearGradient id="a" x1="0%" y1="0%" x2="0%" y2="100%"><stop offset="0%" stop-color="%232fa7c8"/><stop offset="100%" stop-color="%235ac8fa"/></linearGradient></defs><g fill="none" fill-rule="evenodd"><circle cx="90" cy="80" r="70" fill="url(#a)" opacity="0.9"/><path fill="#fff" fill-opacity="0.9" d="M44 188c0-25 20-45 45-45h12c25 0 45 20 45 45v36c0 5-4 9-9 9H53c-5 0-9-4-9-9v-36Z"/><path stroke="%23000" stroke-opacity="0.1" stroke-width="6" stroke-linecap="round" d="M70 120c10 10 26 10 36 0"/><circle cx="70" cy="78" r="10" fill="#0f172a"/><circle cx="112" cy="78" r="10" fill="#0f172a"/><path stroke="#0f172a" stroke-width="5" stroke-linecap="round" d="M82 180h28"/></g></svg>'
+      );
+    const container = document.createElement('div');
+    container.className = 'guide-helper';
+
+    container.innerHTML = `
+      <div class="guide-bubble" role="status" aria-live="polite">
+        <p>キャンプの疑問があればここからどうぞ！タップで開閉できます。</p>
+        <button type="button" class="guide-close" aria-label="案内を閉じる">×</button>
+      </div>
+      <button class="guide-avatar" type="button" aria-label="案内キャラクター">
+        <img src="${prefix}assets/img/guide-sloth.png" alt="キャンプ案内キャラクター">
+      </button>
+    `;
+
+    const bubble = container.querySelector('.guide-bubble');
+    const avatar = container.querySelector('.guide-avatar');
+    const closeBtn = container.querySelector('.guide-close');
+    const img = container.querySelector('img');
+    let triedFallback = false;
+
+    let autoHide = setTimeout(() => bubble.classList.remove('show'), 4500);
+
+    const toggle = () => {
+      const willShow = !bubble.classList.contains('show');
+      bubble.classList.toggle('show', willShow);
+      if (willShow) {
+        clearTimeout(autoHide);
+        autoHide = setTimeout(() => bubble.classList.remove('show'), 6000);
+      }
+    };
+
+    avatar.addEventListener('click', toggle);
+    closeBtn.addEventListener('click', () => bubble.classList.remove('show'));
+
+    img.addEventListener('error', () => {
+      if (triedFallback) {
+        container.remove();
+        return;
+      }
+      triedFallback = true;
+      img.src = fallback;
+    });
+
+    document.body.appendChild(container);
+    bubble.classList.add('show');
+  } catch (error) {
+    console.error('guide helper setup failed', error);
+  }
 }
 
 function generateTOC() {
