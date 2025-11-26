@@ -614,6 +614,12 @@ main {
   border-radius: 0;
 }
 
+.post-card-image.illustration img {
+  object-fit: contain;
+  padding: var(--spacing-sm);
+  background: var(--color-bg-secondary);
+}
+
 .post-card:hover .post-card-image img {
   transform: scale(1.05);
 }
@@ -743,6 +749,22 @@ main {
   height: 100%;
   object-fit: cover;
   border-radius: var(--radius-lg);
+}
+
+/* イラストなどをトリミングせずに見せたい場合の調整 */
+.post-hero.illustration {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: radial-gradient(circle at 30% 20%, rgba(47,167,200,0.08), transparent 45%), var(--color-bg-secondary);
+}
+
+.post-hero.illustration img {
+  width: auto;
+  height: 100%;
+  max-height: 460px;
+  object-fit: contain;
+  padding: var(--spacing-lg);
 }
 
 .post-container {
