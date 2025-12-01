@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800">
+  <rect width="1200" height="800" fill="#0f172a"/>
+  <rect x="0" y="500" width="1200" height="300" fill="#0a2f2f"/>
+  <rect x="200" y="200" width="240" height="380" fill="#fbbf24"/>
+  <rect x="220" y="230" width="200" height="60" fill="#fef08a"/>
+  <path d="M460 520 L980 520 L980 560 L460 560 Z" fill="#cbd5e1"/>
+  <path d="M520 560 L980 560 L980 600 L520 600 Z" fill="#d9e3ec"/>
+  <path d="M580 600 L980 600 L980 640 L580 640 Z" fill="#e2e8f0"/>
+  <text x="250" y="320" font-family="sans-serif" font-size="40" fill="#0f172a">入口</text>
+  <text x="480" y="500" font-family="sans-serif" font-size="32" fill="#e2e8f0">川へ下る階段</text>
+  <text x="240" y="720" font-family="sans-serif" font-size="30" fill="#cbd5e1">階段を下りるごとに川が近づく</text>
+</svg>
