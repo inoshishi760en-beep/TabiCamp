@@ -1,0 +1,70 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="800" viewBox="0 0 1200 800" role="img" aria-labelledby="title desc">
+  <title id="title">Cooking on a multi griddle</title>
+  <desc id="desc">Colorful camp meal sizzling on a round multi griddle with dual handles.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#0f172a" />
+      <stop offset="100%" stop-color="#1e293b" />
+    </linearGradient>
+    <linearGradient id="surface" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#272e3a" />
+      <stop offset="100%" stop-color="#1a202c" />
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="800" fill="url(#bg)" />
+  <ellipse cx="600" cy="650" rx="320" ry="90" fill="#0b1221" opacity="0.55" />
+  <circle cx="600" cy="370" r="270" fill="url(#surface)" stroke="#3b4250" stroke-width="10" />
+  <rect x="310" y="340" width="70" height="60" rx="20" fill="#2f3644" />
+  <rect x="820" y="340" width="70" height="60" rx="20" fill="#2f3644" />
+  <rect x="295" y="350" width="60" height="40" rx="12" fill="#475569" />
+  <rect x="845" y="350" width="60" height="40" rx="12" fill="#475569" />
+  <circle cx="450" cy="320" r="110" fill="#1f2937" />
+  <circle cx="750" cy="420" r="95" fill="#1b222f" />
+  <path d="M430 200c90 40 200 40 260-10" fill="none" stroke="#4b5563" stroke-width="6" stroke-linecap="round" opacity="0.35" />
+  <circle cx="460" cy="320" r="95" fill="#111827" />
+  <circle cx="730" cy="400" r="80" fill="#111827" />
+  <circle cx="600" cy="460" r="90" fill="#111827" />
+  <g transform="translate(600 380) rotate(-8)">
+    <rect x="-110" y="-60" width="220" height="120" rx="32" fill="#facc15" stroke="#fbbf24" stroke-width="6" />
+    <rect x="-90" y="-50" width="180" height="100" rx="26" fill="#fde68a" opacity="0.7" />
+    <circle cx="-40" cy="-10" r="16" fill="#475569" opacity="0.35" />
+    <circle cx="60" cy="20" r="14" fill="#475569" opacity="0.35" />
+    <circle cx="0" cy="10" r="10" fill="#475569" opacity="0.35" />
+  </g>
+  <g transform="translate(440 330) rotate(6)">
+    <ellipse cx="0" cy="0" rx="70" ry="40" fill="#10b981" />
+    <ellipse cx="20" cy="-10" rx="70" ry="40" fill="#0ea5e9" opacity="0.65" />
+    <ellipse cx="-10" cy="20" rx="70" ry="40" fill="#22d3ee" opacity="0.4" />
+    <circle cx="-45" cy="-5" r="12" fill="#f97316" />
+    <circle cx="40" cy="15" r="10" fill="#f97316" />
+  </g>
+  <g transform="translate(740 430) rotate(-18)">
+    <rect x="-65" y="-25" width="130" height="50" rx="22" fill="#dc2626" />
+    <rect x="-55" y="-18" width="110" height="36" rx="18" fill="#f87171" />
+    <circle cx="-30" cy="0" r="8" fill="#7f1d1d" opacity="0.5" />
+    <circle cx="22" cy="-4" r="6" fill="#7f1d1d" opacity="0.5" />
+  </g>
+  <g transform="translate(640 520) rotate(12)">
+    <ellipse cx="0" cy="0" rx="90" ry="50" fill="#34d399" />
+    <ellipse cx="-30" cy="0" rx="28" ry="18" fill="#a3e635" />
+    <ellipse cx="20" cy="-8" rx="24" ry="16" fill="#facc15" />
+    <ellipse cx="40" cy="14" rx="20" ry="14" fill="#fb923c" />
+    <circle cx="-50" cy="12" r="6" fill="#166534" />
+    <circle cx="55" cy="-12" r="6" fill="#166534" />
+  </g>
+  <g transform="translate(520 235)">
+    <circle cx="0" cy="0" r="12" fill="#f97316" />
+    <circle cx="26" cy="8" r="10" fill="#22d3ee" />
+    <circle cx="50" cy="-6" r="8" fill="#a3e635" />
+    <circle cx="18" cy="-20" r="9" fill="#e0f2fe" />
+    <circle cx="38" cy="-28" r="6" fill="#f59e0b" />
+  </g>
+  <g transform="translate(690 270)">
+    <circle cx="0" cy="0" r="14" fill="#eab308" />
+    <circle cx="24" cy="6" r="12" fill="#f59e0b" />
+    <circle cx="-18" cy="-4" r="9" fill="#facc15" />
+    <circle cx="-32" cy="10" r="7" fill="#f97316" />
+  </g>
+  <path d="M455 600c120 60 220 42 330-14" fill="none" stroke="#fbbf24" stroke-width="6" stroke-linecap="round" opacity="0.25" />
+  <circle cx="600" cy="370" r="260" fill="none" stroke="#0f172a" stroke-width="16" opacity="0.45" />
+</svg>
