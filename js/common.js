@@ -28,6 +28,7 @@ function ensureFaviconLinks() {
     if (!document || !document.head) return;
     const prefix = getRootPrefix();
     const config = [
+      { rel: 'icon', type: 'image/svg+xml', href: 'assets/img/favicon.svg' },
       { rel: 'icon', type: 'image/png', sizes: '32x32', href: 'assets/img/favicon-32.png' },
       { rel: 'icon', type: 'image/png', sizes: '48x48', href: 'assets/img/favicon-48.png' },
       { rel: 'apple-touch-icon', sizes: '180x180', href: 'assets/img/favicon-180.png' },
@@ -106,6 +107,7 @@ function getInlineComponentHtml(elementId) {
   </div>
 </footer>`;
   }
+}
 
 document.addEventListener('DOMContentLoaded', async function() {
   ensureFaviconLinks();
@@ -222,7 +224,7 @@ function setupNavToggle() {
 function setupBackToTop() {
   const btn = document.createElement('button');
   btn.className = 'back-to-top';
-  btn.setAttribute('aria-label', 'トップへ戻めE);
+  btn.setAttribute('aria-label', 'Back to top');
   btn.innerHTML = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5l7 7-1.41 1.41L13 9.83V19h-2V9.83L6.41 13.41 5 12z"/></svg>';
   document.body.appendChild(btn);
 
@@ -470,6 +472,8 @@ document.addEventListener('DOMContentLoaded', function() {
     generateTOC();
   }
 });
+
+
 
 
 
