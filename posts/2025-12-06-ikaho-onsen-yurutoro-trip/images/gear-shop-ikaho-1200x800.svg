@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="800" viewBox="0 0 1200 800" role="img" aria-label="Outdoor gear shop illustration">
+  <defs>
+    <linearGradient id="g5" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#fef6e4"/>
+      <stop offset="100%" stop-color="#cddafd"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="800" rx="32" fill="url(#g5)"/>
+  <rect x="220" y="200" width="760" height="360" rx="26" fill="#1e1e2f" opacity="0.75"/>
+  <rect x="260" y="240" width="680" height="280" rx="18" fill="#ffffff" opacity="0.9"/>
+  <rect x="300" y="280" width="180" height="40" rx="10" fill="#8ecae6"/>
+  <rect x="520" y="280" width="180" height="40" rx="10" fill="#ffd166"/>
+  <rect x="740" y="280" width="180" height="40" rx="10" fill="#ef476f"/>
+  <rect x="320" y="350" width="140" height="110" rx="16" fill="#ff9f1c" opacity="0.85"/>
+  <rect x="520" y="350" width="140" height="110" rx="16" fill="#2ec4b6" opacity="0.85"/>
+  <rect x="720" y="350" width="140" height="110" rx="16" fill="#e36414" opacity="0.85"/>
+  <text x="240" y="620" font-family="'Segoe UI', 'Helvetica', sans-serif" font-size="44" font-weight="700" fill="#1e1e2f">Takasaki Outdoor Shop</text>
+  <text x="240" y="670" font-family="'Segoe UI', 'Helvetica', sans-serif" font-size="28" fill="#1e1e2f">new camp gear pickup day</text>
+</svg>

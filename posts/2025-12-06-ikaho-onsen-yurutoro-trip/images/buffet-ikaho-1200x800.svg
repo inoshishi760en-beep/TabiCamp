@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="800" viewBox="0 0 1200 800" role="img" aria-label="Buffet plates illustration">
+  <defs>
+    <linearGradient id="g3" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#ffe8c8"/>
+      <stop offset="100%" stop-color="#ffc8a2"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="800" rx="32" fill="url(#g3)"/>
+  <circle cx="360" cy="360" r="150" fill="#ffffff" stroke="#f28482" stroke-width="10" opacity="0.9"/>
+  <circle cx="820" cy="420" r="180" fill="#ffffff" stroke="#84a59d" stroke-width="10" opacity="0.9"/>
+  <rect x="300" y="540" width="620" height="80" rx="28" fill="#f6bd60" opacity="0.7"/>
+  <circle cx="330" cy="350" r="48" fill="#ffb703"/>
+  <circle cx="420" cy="410" r="38" fill="#2a9d8f"/>
+  <circle cx="860" cy="400" r="52" fill="#ef476f" opacity="0.9"/>
+  <circle cx="760" cy="460" r="42" fill="#219ebc" opacity="0.9"/>
+  <text x="200" y="640" font-family="'Segoe UI', 'Helvetica', sans-serif" font-size="44" font-weight="700" fill="#5f2c0a">Hotel Tenbo Buffet</text>
+  <text x="200" y="690" font-family="'Segoe UI', 'Helvetica', sans-serif" font-size="28" fill="#5f2c0a">steak, crab, abalone & sweets</text>
+</svg>
