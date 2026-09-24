@@ -1,58 +1,67 @@
 <!DOCTYPE html>
 <html lang="ja">
-
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>お湯キャン△ - キャンプと温泉の情報を発信するブログ</title>
-  <meta name="description" content="キャンプと温泉の情報を発信するブログ">
-
-  <!-- OGP -->
-  <meta property="og:title" content="お湯キャン△">
-  <meta property="og:description" content="キャンプと温泉の情報を発信するブログ">
+  <title>外で遊んで、お湯にほどける。 | お湯キャン△</title>
+  <meta name="description" content="キャンプと温泉、気ままな週末旅。キャンプ場の体験記、温泉・旅館の宿泊記、道具やキャンプ飯のヒントをお届けする「お湯キャン△」。">
+  <meta name="site-root" content="">
+  <meta name="theme-color" content="#274c40">
+  <meta property="og:title" content="外で遊んで、お湯にほどける。 | お湯キャン△">
+  <meta property="og:description" content="キャンプと温泉、気ままな週末旅。キャンプ場の体験記、温泉・旅館の宿泊記、道具やキャンプ飯のヒントをお届けする「お湯キャン△」。">
   <meta property="og:type" content="website">
-  <meta property="og:image" content="assets/img/home-hero-onsen-1024x1024.png">
-  <meta property="og:image:width" content="1024">
-  <meta property="og:image:height" content="1024">
+  <meta property="og:image" content="https://inoshishi760en-beep.github.io/TabiCamp/assets/img/forest-hero-1600x1000.webp">
   <meta property="og:site_name" content="お湯キャン△">
   <meta property="og:locale" content="ja_JP">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:image" content="assets/img/home-hero-onsen-1024x1024.png">
-  <meta name="site-root" content="">
-
+  <link rel="icon" type="image/svg+xml" href="assets/img/favicon.svg">
   <link rel="stylesheet" href="assets/css/normalize.css">
-  <link rel="stylesheet" href="assets/css/main.css">
+  <link rel="stylesheet" href="assets/css/main.css?v=20260924">
 </head>
-
 <body>
   <div id="header-placeholder"></div>
-
-  <main>
+  <main id="main-content">
     <div class="container">
-      <div class="page-header">
-        <h1>お湯キャン△</h1>
-        <p>キャンプと温泉の情報を発信するブログ</p>
-      </div>
-
-      <div class="quick-links">
-        <a href="categories.html" class="quick-link">カテゴリから探す</a>
-        <a href="tags.html" class="quick-link">タグから探す</a>
-      </div>
-
-      <h2 id="posts-list">最新記事</h2>
-
-      <div class="posts-grid">
-        <article class="post-card">
+      <div class="home-intro"><span class="eyebrow">A little escape, a little happiness.</span><p>キャンプと温泉、気ままな週末の記録。</p></div>
+      <section class="home-hero" aria-labelledby="hero-title">
+        <img class="hero-photo" src="assets/img/forest-hero-1600x1000.webp" srcset="assets/img/forest-hero-800x500.webp 800w, assets/img/forest-hero-1600x1000.webp 1600w" sizes="(max-width: 760px) 100vw, 1200px" width="1600" height="1000" alt="白樺の森にテントが佇むSnow Peak鹿沼の林間キャンプサイト" fetchpriority="high">
+        <div class="hero-copy">
+          <span class="eyebrow">Find your slow weekend</span>
+          <h1 id="hero-title">外で遊んで、<br>お湯にほどける。</h1>
+          <p>森の空気、焚き火の音、湯けむりの向こう。<br>がんばらない休日を、探しにいこう。</p>
+          <a class="button button-light" href="#posts-list">旅の記録を読む <span aria-hidden="true">↗</span></a>
+        </div>
+        <a class="hero-location" href="posts/2025-10-13-snow-peak-kanuma-forest/index.html">栃木・Snow Peak 鹿沼 <span aria-hidden="true">↗</span></a>
+      </section>
+      <nav class="theme-strip" aria-label="テーマから記事を探す">
+        <a href="categories.html#キャンプ場レポート"><svg viewBox="0 0 32 32" aria-hidden="true"><path d="M3 26 16 5l13 21H3Z M16 5v21 M16 16l7 10"/></svg><span>キャンプを楽しむ<small>CAMP &amp; OUTDOOR</small></span></a>
+        <a href="categories.html#onsen"><svg viewBox="0 0 32 32" aria-hidden="true"><path d="M3 20c0 11 26 11 26 0 M8 19c-7 7 23 7 16 0 M9 15c-6-6 6-6 0-12 M16 15c-6-6 6-6 0-12 M23 15c-6-6 6-6 0-12"/></svg><span>温泉でひと息<small>ONSEN &amp; RELAX</small></span></a>
+        <a href="categories.html#旅館ステイ"><svg viewBox="0 0 32 32" aria-hidden="true"><path d="M4 28V12L16 3l12 9v16H4Z M12 28V18h8v10 M9 12h14"/></svg><span>お気に入りの宿へ<small>STAY &amp; TRAVEL</small></span></a>
+        <a href="categories.html#ギア"><svg viewBox="0 0 32 32" aria-hidden="true"><path d="M9 10V6c0-5 14-5 14 0v4 M6 10h20v18H6V10Z M6 17h20 M12 15v5 M20 15v5"/></svg><span>道具を選ぶ<small>GEAR &amp; TIPS</small></span></a>
+      </nav>
+      <section class="home-section" aria-labelledby="featured-title">
+        <div class="section-heading"><div><span class="eyebrow">The weekend edit</span><h2 id="featured-title">こんな休日、いかがですか。</h2></div></div>
+        <article class="featured-story">
+          <a class="featured-image" href="posts/2026-02-21-kominka-higashichichibu/index.html"><img src="posts/2026-02-21-kominka-higashichichibu/images/card-720x450.webp" width="720" height="450" alt="囲炉裏と畳の部屋が広がる東秩父村の古民家" loading="lazy"></a>
+          <div class="featured-copy">
+            <div class="story-label"><span>旅館ステイ</span>埼玉・東秩父村</div>
+            <h3><a href="posts/2026-02-21-kominka-higashichichibu/index.html">古民家を一棟、貸し切って。<br>みんなでつくる、最高の休日。</a></h3>
+            <p>夕食をつくり、五右衛門風呂に浸かり、囲炉裏を囲む。築95年の古民家で過ごした、にぎやかであたたかな一泊二日の記録。</p>
+            <a class="text-link" href="posts/2026-02-21-kominka-higashichichibu/index.html">この旅のつづきを読む<span aria-hidden="true">↗</span></a>
+          </div>
+        </article>
+      </section>
+      <section class="home-section" aria-labelledby="posts-list">
+        <div class="section-heading"><div><span class="eyebrow">Latest stories</span><h2 id="posts-list">新しい旅の記録</h2></div><a class="text-link" href="categories.html">すべての記事<span aria-hidden="true">↗</span></a></div>
+        <div class="posts-grid">
+          <article class="post-card">
           <a href="posts/2026-02-21-kominka-higashichichibu/index.html" class="post-card-image">
-            <img src="posts/2026-02-21-kominka-higashichichibu/images/kominka-cover.jpg"
-              alt="大正時代の趣ある東秩父村の古民家外観" loading="lazy">
+            <img src="posts/2026-02-21-kominka-higashichichibu/images/card-720x450.webp" alt="囲炉裏と畳の部屋が広がる東秩父村の古民家" loading="lazy" width="720" height="450" decoding="async">
           </a>
           <div class="post-card-content">
-            <h2 class="post-card-title">
-              <a
-                href="posts/2026-02-21-kominka-higashichichibu/index.html">【宿泊記】大正時代の古民家に泊まる。東秩父村で"みんなで作る夕食×３つのお風呂×宴会"の最高グループ旅</a>
-            </h2>
+            <h3 class="post-card-title">
+              <a href="posts/2026-02-21-kominka-higashichichibu/index.html">【宿泊記】大正時代の古民家に泊まる。東秩父村で"みんなで作る夕食×３つのお風呂×宴会"の最高グループ旅</a>
+            </h3>
             <p class="post-card-excerpt">
               築95年の大正古民家を1棟まるごと貸切。みんなで夕食を作り、五右衛門風呂・野外風呂・ユニットバスの3種を堪能し、囲炉裏を囲んで宴会した最高のグループ旅レポート。</p>
             <div class="post-card-meta">
@@ -62,17 +71,14 @@
             </div>
           </div>
         </article>
-
-        <article class="post-card">
+          <article class="post-card">
           <a href="posts/2026-01-31-minakami-snowboard-trip/index.html" class="post-card-image">
-            <img src="posts/2026-01-31-minakami-snowboard-trip/images/minakami-snowboard-cover.jpg"
-              alt="みなかみ高原スキーリゾートのゲレンデ風景" loading="lazy">
+            <img src="posts/2026-01-31-minakami-snowboard-trip/images/card-720x450.webp" alt="みなかみ高原スキーリゾートのゲレンデ風景" loading="lazy" width="720" height="450" decoding="async">
           </a>
           <div class="post-card-content">
-            <h2 class="post-card-title">
-              <a
-                href="posts/2026-01-31-minakami-snowboard-trip/index.html">【雪ふわ×温泉】みなかみ高原スキーリゾートでのんびりスノボ旅｜貸切温泉付き「温泉ロッジたかね」が最高だった話</a>
-            </h2>
+            <h3 class="post-card-title">
+              <a href="posts/2026-01-31-minakami-snowboard-trip/index.html">【雪ふわ×温泉】みなかみ高原スキーリゾートでのんびりスノボ旅｜貸切温泉付き「温泉ロッジたかね」が最高だった話</a>
+            </h3>
             <p class="post-card-excerpt">
               みなかみ高原でスノボ＆温泉ロッジたかねに宿泊。雪質◎、ゲレンデ◎、1泊2食8,900円のコスパ◎、しかも源泉かけ流し貸切温泉付き。のんびり派に最高の雪旅をレポート。</p>
             <div class="post-card-meta">
@@ -82,17 +88,14 @@
             </div>
           </div>
         </article>
-
-        <article class="post-card">
+          <article class="post-card">
           <a href="posts/2025-12-06-ikaho-onsen-yurutoro-trip/index.html" class="post-card-image">
-            <img src="posts/2025-12-06-ikaho-onsen-yurutoro-trip/images/伊香保.png" alt="伊香保温泉の石段街でIKAHOモニュメント越しに階段を見上げる写真"
-              loading="lazy">
+            <img src="posts/2025-12-06-ikaho-onsen-yurutoro-trip/images/card-720x450.webp" alt="伊香保温泉の石段街でIKAHOモニュメント越しに階段を見上げる写真" loading="lazy" width="720" height="450" decoding="async">
           </a>
           <div class="post-card-content">
-            <h2 class="post-card-title">
-              <a
-                href="posts/2025-12-06-ikaho-onsen-yurutoro-trip/index.html">【宿泊記】伊香保温泉1泊2日の“ゆるとろ”旅ログ｜ホテル天坊で浸かって食べて寝落ち</a>
-            </h2>
+            <h3 class="post-card-title">
+              <a href="posts/2025-12-06-ikaho-onsen-yurutoro-trip/index.html">【宿泊記】伊香保温泉1泊2日の“ゆるとろ”旅ログ｜ホテル天坊で浸かって食べて寝落ち</a>
+            </h3>
             <p class="post-card-excerpt">
               12/6-7の伊香保温泉旅。水沢うどんで始まり、石段街散歩、ホテル天坊の豪華ビュッフェと2種の温泉、朝風呂からの絶景、高崎でのキャンプギア購入まで“ゆるとろ”に満喫した記録です。</p>
             <div class="post-card-meta">
@@ -102,17 +105,14 @@
             </div>
           </div>
         </article>
-
-        <article class="post-card">
+          <article class="post-card">
           <a href="posts/2025-11-29-kawagiri-no-yu-onsen-lunch/index.html" class="post-card-image">
-            <img src="posts/2025-11-29-kawagiri-no-yu-onsen-lunch/images/open-air-bath-4032x3024.jpg"
-              alt="鬼怒川を望む露天風呂。岩風呂と川面の景色" loading="lazy">
+            <img src="posts/2025-11-29-kawagiri-no-yu-onsen-lunch/images/card-720x450.webp" alt="鬼怒川を望む露天風呂。岩風呂と川面の景色" loading="lazy" width="720" height="450" decoding="async">
           </a>
           <div class="post-card-content">
-            <h2 class="post-card-title">
-              <a
-                href="posts/2025-11-29-kawagiri-no-yu-onsen-lunch/index.html">【日帰り温泉】鬼怒川の川べりでだらだら。「川霧の湯」でナマケモノしてきた話（ランチ付き1,300円）</a>
-            </h2>
+            <h3 class="post-card-title">
+              <a href="posts/2025-11-29-kawagiri-no-yu-onsen-lunch/index.html">【日帰り温泉】鬼怒川の川べりでだらだら。「川霧の湯」でナマケモノしてきた話（ランチ付き1,300円）</a>
+            </h3>
             <p class="post-card-excerpt">
               鬼怒川沿いの「川霧の湯」で温泉とランチをセットで満喫。川音を聞きながら浸かれる内湯と露天、源泉かけ流しのやわらかいお湯、1,300円ランチセットの満足度をキャンプ目線でレポート。</p>
             <div class="post-card-meta">
@@ -122,17 +122,15 @@
             </div>
           </div>
         </article>
-
-        <article class="post-card">
+          <article class="post-card">
           <a href="posts/2025-11-27-onetigris-dynisland/index.html" class="post-card-image">
-            <img src="posts/2025-11-27-onetigris-dynisland/images/dynisland-hero-1200x800.webp"
-              alt="テント内でDYNISLANDマットに寝袋を広げるキャンパー" loading="lazy">
+            <img src="posts/2025-11-27-onetigris-dynisland/images/card-720x450.webp" alt="テント内でDYNISLANDマットに寝袋を広げるキャンパー" loading="lazy" width="720" height="450" decoding="async">
           </a>
           <div class="post-card-content">
-            <h2 class="post-card-title">
+            <h3 class="post-card-title">
               <a href="posts/2025-11-27-onetigris-dynisland/index.html">【レビュー】OneTigris
                 DYNISLANDはベッド級のダブルマット｜60秒設営で冬キャンも快眠</a>
-            </h2>
+            </h3>
             <p class="post-card-excerpt">
               10cmフォーム×R値5.6のダブルマットを実際の設営ステップと寝心地・断熱性からレビュー。ベッド級の安定感を求める2人キャンパーに向けたポイントをまとめました。</p>
             <div class="post-card-meta">
@@ -142,15 +140,14 @@
             </div>
           </div>
         </article>
-
-        <article class="post-card">
+          <article class="post-card">
           <a href="posts/2025-11-12-first-camp/index.html" class="post-card-image">
-            <img src="posts/2025-11-12-first-camp/images/landscape-692x461.jpg" alt="紅葉に染まる湖畔サイト" loading="lazy">
+            <img src="posts/2025-11-12-first-camp/images/card-720x450.webp" alt="紅葉に染まる湖畔サイト" loading="lazy" width="720" height="450" decoding="async">
           </a>
           <div class="post-card-content">
-            <h2 class="post-card-title">
+            <h3 class="post-card-title">
               <a href="posts/2025-11-12-first-camp/index.html">【初心者向け】秋の湖畔キャンプ場レポート｜A区画完全ガイド</a>
-            </h2>
+            </h3>
             <p class="post-card-excerpt">湖畔サイトと焚き火を存分に楽しめるキャンプ場を初心者目線で徹底レビュー。アクセス、設備、A区画のおすすめポイントをまとめました。</p>
             <div class="post-card-meta">
               <time datetime="2025-11-12">2025.11.12</time>
@@ -159,209 +156,41 @@
             </div>
           </div>
         </article>
-
-        <article class="post-card">
-          <a href="posts/2025-11-10-mountain-cook/index.html" class="post-card-image">
-            <img src="posts/2025-11-10-mountain-cook/images/multi-griddle-paella-778x494.jpg"
-              alt="マルチグリドルで海鮮パエリアを作っている様子" loading="lazy">
-          </a>
-          <div class="post-card-content">
-            <h2 class="post-card-title">
-              <a href="posts/2025-11-10-mountain-cook/index.html">マルチグリドルでズボラでも映えるキャンプ飯6選｜荷物も洗い物も減らすアイデア</a>
-            </h2>
-            <p class="post-card-excerpt">
-              マルチグリドル1枚で“がんばってる風”に見せつつ荷物も洗い物も減らせるキャンプ飯を6品紹介。マヨで油代用、解凍不要の枝豆、ひっくり返さない山芋焼きなどズボラ向けの工夫をまとめました。</p>
-            <div class="post-card-meta">
-              <time datetime="2025-11-10">2025.11.10</time>
-              <span class="meta-separator">|</span>
-              <a href="categories.html#料理" class="card-category">料理</a>
-            </div>
-          </div>
-        </article>
-
-        <article class="post-card">
-          <a href="posts/2025-11-08-kusatsu-osakaya-stay/index.html" class="post-card-image">
-            <img src="posts/2025-11-08-kusatsu-osakaya-stay/images/slide06_202506.jpg" alt="草津温泉・大阪屋旅館の外観"
-              loading="lazy">
-          </a>
-          <div class="post-card-content">
-            <h2 class="post-card-title">
-              <a href="posts/2025-11-08-kusatsu-osakaya-stay/index.html">【宿泊記】草津温泉「大阪屋」で貸切岩風呂と純和風の客室ステイ｜“何もしない”贅沢旅</a>
-            </h2>
-            <p class="post-card-excerpt">湯畑源泉かけ流しの老舗旅館「大阪屋」に滞在。貸切家族風呂「岩戸の湯」と数寄屋造りの和室でごろごろ過ごし、会席料理や裏草津散歩も楽しんだ記録です。</p>
-            <div class="post-card-meta">
-              <time datetime="2025-11-08">2025.11.08</time>
-              <span class="meta-separator">|</span>
-              <a href="categories.html#旅館ステイ" class="card-category">旅館ステイ</a>
-            </div>
-          </div>
-        </article>
-
-        <article class="post-card">
-          <a href="posts/2025-11-11-solo-camp-basics/index.html" class="post-card-image">
-            <img src="posts/2025-11-11-solo-camp-basics/images/rectangle-banner-1280x670.webp" alt="ソロキャンプの装備"
-              loading="lazy">
-          </a>
-          <div class="post-card-content">
-            <h2 class="post-card-title">
-              <a href="posts/2025-11-11-solo-camp-basics/index.html">ソロキャンプ入門｜装備と設営の基本</a>
-            </h2>
-            <p class="post-card-excerpt">チェックリスト形式で、初めてのソロキャンプに必要な装備と設営手順を解説。安全に楽しむための注意点も併せて掲載しています。</p>
-            <div class="post-card-meta">
-              <time datetime="2025-11-11">2025.11.11</time>
-              <span class="meta-separator">|</span>
-              <a href="categories.html#ノウハウ" class="card-category">ノウハウ</a>
-            </div>
-          </div>
-        </article>
-
-        <article class="post-card">
-          <a href="posts/2025-11-06-kansai-family-camps/index.html" class="post-card-image">
-            <img src="posts/2025-11-06-kansai-family-camps/images/image-07-1160x780.jpg" alt="関西の高規格キャンプ場"
-              loading="lazy">
-          </a>
-          <div class="post-card-content">
-            <h2 class="post-card-title">
-              <a href="posts/2025-11-06-kansai-family-camps/index.html">関西の高規格キャンプ場3選｜家族で安心</a>
-            </h2>
-            <p class="post-card-excerpt">子ども連れでも快適に過ごせる高規格キャンプ場を3つ紹介。設備、アクティビティ、予約の混雑具合をまとめました。</p>
-            <div class="post-card-meta">
-              <time datetime="2025-11-06">2025.11.06</time>
-              <span class="meta-separator">|</span>
-              <a href="categories.html#関西" class="card-category">関西</a>
-            </div>
-          </div>
-        </article>
-
-        <article class="post-card">
-          <a href="posts/2025-11-04-tent-selection-guide/index.html" class="post-card-image photo-wide">
-            <img src="posts/2025-11-04-tent-selection-guide/images/1214tc8653_resize.jpg" alt="星空の下に立つテント"
-              loading="lazy">
-          </a>
-          <div class="post-card-content">
-            <h2 class="post-card-title">
-              <a href="posts/2025-11-04-tent-selection-guide/index.html">【初心者必見】テント選び完全ガイド｜まずは「8つの形」を知れば絶対に失敗しない！</a>
-            </h2>
-            <p class="post-card-excerpt">テントは基本の8形だけ知れば迷わない。ドーム・ワンポール・ツールームなどの特徴と向き不向きを、初心者でも直感で選べるよう整理しました。</p>
-            <div class="post-card-meta">
-              <time datetime="2025-11-04">2025.11.04</time>
-              <span class="meta-separator">|</span>
-              <a href="categories.html#ギア" class="card-category">ギア</a>
-            </div>
-          </div>
-        </article>
-
-        <article class="post-card">
-          <a href="posts/2025-10-13-snow-peak-kanuma-forest/index.html" class="post-card-image">
-            <img src="posts/2025-10-13-snow-peak-kanuma-forest/images/kanuma-forest-1200x800.jpg"
-              alt="Snow Peak鹿沼の林間サイト" loading="lazy">
-          </a>
-          <div class="post-card-content">
-            <h2 class="post-card-title">
-              <a href="posts/2025-10-13-snow-peak-kanuma-forest/index.html">Snow Peak鹿沼で林間サイト泊｜スパ併設の森キャンプ体験記</a>
-            </h2>
-            <p class="post-card-excerpt">
-              林間区画サイトで過ごした2日間（2025年10月13日?14日）。スパ併設、ゆとりのIN13:00/OUT12:00、レンタルやショップの充実ぶりもまとめました。</p>
-            <div class="post-card-meta">
-              <time datetime="2025-10-13">2025.10.13</time>
-              <span class="meta-separator">|</span>
-              <a href="categories.html#キャンプ場レポート" class="card-category">キャンプ場レポート</a>
-            </div>
-          </div>
-        </article>
-
-        <article class="post-card">
-          <a href="posts/2025-10-01-self-introduction/index.html" class="post-card-image">
-            <img src="posts/2025-10-01-self-introduction/images/①.png"
-              alt="露天風呂で温泉に浸かるナマケモノと、焚き火のそばでバックパックを背負うナマケモノのイラスト" loading="lazy">
-          </a>
-          <div class="post-card-content">
-            <h2 class="post-card-title">
-              <a href="posts/2025-10-01-self-introduction/index.html">こんにちは。キャンプ＋温泉が好きなナマケモノの自己紹介</a>
-            </h2>
-            <p class="post-card-excerpt">茨城拠点で週末にキャンプと温泉を楽しむ筆者の自己紹介と、ブログで大切にしているスタンスをまとめました。</p>
-            <div class="post-card-meta">
-              <time datetime="2025-10-01">2025.10.01</time>
-              <span class="meta-separator">|</span>
-              <a href="categories.html#ブログ運営" class="card-category">ブログ運営</a>
-            </div>
-          </div>
-        </article>
-      </div>
-
-      <p class="view-all-link">
-        <a href="categories.html">すべての記事一覧へ</a>
-      </p>
-      <section aria-labelledby="popular-tags" class="container" style="margin-top: var(--spacing-2xl);">
-        <h2 id="popular-tags">人気のタグ</h2>
-        <div class="tags-cloud">
-          <a href="tags.html#kominka" class="tag-item">古民家 <span class="tag-count">(1)</span></a>
-          <a href="tags.html#goemonburo" class="tag-item">五右衛門風呂 <span class="tag-count">(1)</span></a>
-          <a href="tags.html#group-trip" class="tag-item">グループ旅 <span class="tag-count">(1)</span></a>
-          <a href="tags.html#snowboard" class="tag-item">スノーボード <span class="tag-count">(1)</span></a>
-          <a href="tags.html#minakami" class="tag-item">みなかみ <span class="tag-count">(1)</span></a>
-          <a href="tags.html#kashikiri-onsen" class="tag-item">貸切温泉 <span class="tag-count">(1)</span></a>
-          <a href="tags.html#ikaho-onsen" class="tag-item">伊香保温泉 <span class="tag-count">(1)</span></a>
-          <a href="tags.html#onsen-trip" class="tag-item">温泉旅 <span class="tag-count">(1)</span></a>
-          <a href="tags.html#rotenburo" class="tag-item">露天風呂 <span class="tag-count">(2)</span></a>
-          <a href="tags.html#buffet" class="tag-item">ビュッフェ <span class="tag-count">(1)</span></a>
-          <a href="tags.html#camp-gear" class="tag-item">キャンプギア <span class="tag-count">(1)</span></a>
-          <a href="tags.html#レシピ" class="tag-item">レシピ <span class="tag-count">(1)</span></a>
+        </div>
+        <p class="view-all-link"><a class="button" href="categories.html">すべての記事一覧へ <span aria-hidden="true">↗</span></a></p>
+      </section>
+      <section class="home-section" aria-labelledby="browse-categories">
+        <div class="section-heading"><div><span class="eyebrow">Explore by mood</span><h2 id="browse-categories">次の休日、何をしよう。</h2></div><a class="text-link" href="categories.html">カテゴリで探す<span aria-hidden="true">↗</span></a></div>
+        <div class="browse-grid">
+          <a class="browse-card" href="categories.html#キャンプ場レポート"><span class="eyebrow">01 / CAMP</span><span class="browse-arrow" aria-hidden="true">↗</span><h3>森で、深呼吸。</h3><p>キャンプ場の空気を、体験記から。</p></a>
+          <a class="browse-card" href="categories.html#onsen"><span class="eyebrow">02 / ONSEN</span><span class="browse-arrow" aria-hidden="true">↗</span><h3>お湯に、ほどける。</h3><p>日帰り温泉から、温泉旅まで。</p></a>
+          <a class="browse-card" href="categories.html#旅館ステイ"><span class="eyebrow">03 / STAY</span><span class="browse-arrow" aria-hidden="true">↗</span><h3>泊まるを楽しむ。</h3><p>旅館と古民家、心に残る滞在。</p></a>
+          <a class="browse-card" href="categories.html#料理"><span class="eyebrow">04 / CAMP FOOD</span><span class="browse-arrow" aria-hidden="true">↗</span><h3>外で、おいしく。</h3><p>気負わずつくれるキャンプ飯。</p></a>
         </div>
       </section>
-
-      <section aria-labelledby="browse-categories" class="container" style="margin-top: var(--spacing-2xl);">
-        <h2 id="browse-categories">カテゴリで探す</h2>
-        <div class="categories-list">
-          <div class="category-item">
-            <h2><a href="categories.html#スノーボード">スノーボード</a></h2>
-            <p>みなかみ高原でふわふわ雪のゲレンデ＆貸切温泉付きロッジのスノボ旅。</p>
-          </div>
-          <div class="category-item">
-            <h2><a href="categories.html#onsen">温泉</a></h2>
-            <p>伊香保で“ゆるとろ”1泊2日と、鬼怒川の川音に浸かる日帰り温泉レポ。</p>
-          </div>
-          <div class="category-item">
-            <h2><a href="categories.html#ブログ運営">ブログ運営</a></h2>
-            <p>このブログの自己紹介や方針、運営メモ。</p>
-          </div>
-          <div class="category-item">
-            <h2><a href="categories.html#キャンプ場レポート">キャンプ場レポート</a></h2>
-            <p>スパ併設のキャンプ場や区画の使い心地をまとめたレポート。</p>
-          </div>
-
-          <div class="category-item">
-            <h2><a href="categories.html#関東">関東</a></h2>
-            <p>温浴施設や景観が整った湖畔キャンプ場のレポート。</p>
-          </div>
-          <div class="category-item">
-            <h2><a href="categories.html#関西">関西</a></h2>
-            <p>家族連れで楽しめる高規格サイト情報。</p>
-          </div>
-          <div class="category-item">
-            <h2><a href="categories.html#ギア">ギア</a></h2>
-            <p>テントや防寒アイテムなど道具レビュー。</p>
-          </div>
-          <div class="category-item">
-            <h2><a href="categories.html#旅館ステイ">旅館ステイ</a></h2>
-            <p>温泉旅館や古民家1棟貸しの滞在記、貸切風呂のレビュー。</p>
-          </div>
-          <div class="category-item">
-            <h2><a href="categories.html#料理">料理</a></h2>
-            <p>マルチグリドルで荷物と洗い物を減らすズボラ向けキャンプ飯。</p>
-          </div>
-          <div class="category-item">
-            <h2><a href="categories.html#ノウハウ">ノウハウ</a></h2>
-            <p>設営や準備のコツなど実践的な知識。</p>
-          </div>
-        </div>
+      <section class="home-section" aria-labelledby="popular-tags">
+        <div class="section-heading"><div><span class="eyebrow">Follow your curiosity</span><h2 id="popular-tags">気になる言葉から。</h2></div><a class="text-link" href="tags.html">すべてのタグ<span aria-hidden="true">↗</span></a></div>
+        <div class="tags-cloud"><a href="tags.html#rotenburo" class="tag-item"># 露天風呂 <span class="tag-count">2</span></a>
+        <a href="tags.html#gunma" class="tag-item"># 群馬 <span class="tag-count">2</span></a>
+        <a href="tags.html#キャンプ場" class="tag-item"># キャンプ場 <span class="tag-count">2</span></a>
+        <a href="tags.html#初心者" class="tag-item"># 初心者 <span class="tag-count">2</span></a>
+        <a href="tags.html#ギアレビュー" class="tag-item"># ギアレビュー <span class="tag-count">2</span></a>
+        <a href="tags.html#貸切風呂" class="tag-item"># 貸切風呂 <span class="tag-count">2</span></a>
+        <a href="tags.html#onsen" class="tag-item"># 温泉 <span class="tag-count">1</span></a>
+        <a href="tags.html#daytrip-onsen" class="tag-item"># 日帰り温泉 <span class="tag-count">1</span></a>
+        <a href="tags.html#tochigi" class="tag-item"># 栃木 <span class="tag-count">1</span></a>
+        <a href="tags.html#kinugawa" class="tag-item"># 鬼怒川 <span class="tag-count">1</span></a>
+        <a href="tags.html#kawagiri-no-yu" class="tag-item"># 川霧の湯 <span class="tag-count">1</span></a>
+        <a href="tags.html#lunch-set" class="tag-item"># ランチセット <span class="tag-count">1</span></a></div>
+      </section>
+      <section class="home-section about-banner" aria-labelledby="about-heading">
+        <img src="assets/img/about-sloth-270x270.webp" width="135" height="135" alt="キャンプと温泉を楽しむナマケモノのイラスト" loading="lazy">
+        <div><span class="eyebrow">About this journal</span><h2 id="about-heading">完璧よりも、心地いい休日を。</h2><p>キャンプと温泉が好きな「ナマケモノ」が、茨城を拠点に綴る旅の記録。<br>行った場所、使った道具、そのままの感想をお届けします。</p></div>
+        <a class="text-link" href="about.html">お湯キャンについて<span aria-hidden="true">↗</span></a>
       </section>
     </div>
   </main>
-
   <div id="footer-placeholder"></div>
-
-  <script src="js/common.js"></script>
+  <script src="js/common.js?v=20260924"></script>
 </body>
-
 </html>

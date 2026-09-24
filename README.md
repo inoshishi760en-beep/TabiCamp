@@ -1,77 +1,48 @@
-﻿# Camp Site
+﻿# お湯キャン△
 
-繧ｭ繝｣繝ｳ繝怜ｴ繝ｬ繝薙Η繝ｼ縺ｨ繧｢繧ｦ繝医ラ繧｢諠・ｱ繧堤匱菫｡縺吶ｋ髱咏噪HTML繝悶Ο繧ｰ
+キャンプと温泉、気ままな週末旅を綴る静的HTMLブログです。
 
-## 迚ｹ蠕ｴ
+公開サイト: https://inoshishi760en-beep.github.io/TabiCamp/
 
-- **繝薙Ν繝我ｸ崎ｦ・*: 邏皮ｲ九↑HTML/CSS/JavaScript縺ｮ縺ｿ縺ｧ讒狗ｯ・
-- **險倅ｺ狗判蜒上・蜈ｱ鄂ｮ**: 蜷・ｨ倅ｺ九ョ繧｣繝ｬ繧ｯ繝医Μ縺ｫ逕ｻ蜒上ｒ驟咲ｽｮ縺礼ｮ｡逅・′螳ｹ譏・
-- **蜍慕噪繝倥ャ繝繝ｼ/繝輔ャ繧ｿ繝ｼ**: JavaScript 縺ｧ蜈ｱ騾壹ヱ繝ｼ繝・ｒ隱ｭ縺ｿ霎ｼ縺ｿ縲∽ｸ諡ｬ邂｡逅・
-- **繝ｬ繧ｹ繝昴Φ繧ｷ繝悶ョ繧ｶ繧､繝ｳ**: 繝｢繝舌う繝ｫ繝ｻ繧ｿ繝悶Ξ繝・ヨ繝ｻ繝・せ繧ｯ繝医ャ繝怜ｯｾ蠢・
-- **SEO蟇ｾ蠢・*: Open Graph繝ｻTwitter Card蟇ｾ蠢懊・←蛻・↑繝｡繧ｿ繧ｿ繧ｰ險ｭ螳・
+## 構成
 
-## 繝輔ぃ繧､繝ｫ讒区・
+- トップ・一覧・案内ページ: ルートのHTML
+- 記事: `posts/YYYY-MM-DD-slug/index.html`
+- 記事専用画像: 各記事の `images/`
+- 共通デザイン: `assets/css/main.css`
+- 共通動作: `js/common.js`
+- ヘッダー・フッター: `includes/`
 
-```
-/
-笏懌楳笏 index.html           # 繝医ャ繝励・繝ｼ繧ｸ
-笏懌楳笏 about.html          # About繝壹・繧ｸ
-笏懌楳笏 contact.html        # 縺雁撫縺・粋繧上○
-笏懌楳笏 categories.html     # 繧ｫ繝・ざ繝ｪ荳隕ｧ
-笏懌楳笏 tags.html          # 繧ｿ繧ｰ荳隕ｧ
-笏懌楳笏 404.html            # 繧ｨ繝ｩ繝ｼ繝壹・繧ｸ
-笏懌楳笏 privacy.html        # 繝励Λ繧､繝舌す繝ｼ繝昴Μ繧ｷ繝ｼ
-笏懌楳笏 assets/
-笏・  笏懌楳笏 css/
-笏・  笏・  笏懌楳笏 normalize.css  # 譛驕ｩ蛹匁ｸ医∩繝ｪ繧ｻ繝・ヨCSS
-笏・  笏・  笏披楳笏 main.css       # 繝｡繧､繝ｳ繧ｹ繧ｿ繧､繝ｫ・医き繧ｹ繧ｿ繝繝励Ο繝代ユ繧｣菴ｿ逕ｨ・・
-笏・  笏披楳笏 img/
-笏・      笏披楳笏 home-hero-onsen-1024x1024.png  # OGP逕ｨ逕ｻ蜒・
-笏懌楳笏 includes/           # 蜈ｱ騾唏TML驛ｨ蜩・ｼ・S蜍慕噪隱ｭ霎ｼ・・
-笏・  笏懌楳笏 header.html
-笏・  笏披楳笏 footer.html
-笏懌楳笏 js/
-笏・  笏披楳笏 common.js      # 蜈ｱ騾壽ｩ溯・・医・繝・ム繝ｼ/繝輔ャ繧ｿ繝ｼ隱ｭ霎ｼ縲√い繝九Γ繝ｼ繧ｷ繝ｧ繝ｳ遲会ｼ・
-笏披楳笏 posts/              # 險倅ｺ具ｼ亥・鄂ｮ縺阪ヱ繧ｿ繝ｼ繝ｳ・・
-    笏披楳笏 YYYY-MM-DD-slug/
-        笏懌楳笏 index.html  # 險倅ｺ区悽菴・
-        笏披楳笏 images/     # 險倅ｺ句ｰら畑逕ｻ蜒擾ｼ医き繝ｼ繝臥畑繝ｻ譛ｬ譁・畑・・
+ビルドや外部フォントの読み込みは不要です。HTML・CSS・JavaScriptだけで動作します。
+
+## ローカルプレビュー
+
+Pythonが利用できる環境では、リポジトリ直下で実行してください。
+
+```sh
+python -m http.server 8000
 ```
 
-## 繝ｭ繝ｼ繧ｫ繝ｫ髢狗匱
+http://localhost:8000/ を開きます。共通パーツをfetchで読み込むため、ファイルを直接開かずHTTPサーバーで確認してください。
 
-HTTP繧ｵ繝ｼ繝舌・繧定ｵｷ蜍輔＠縺ｦ繝悶Λ繧ｦ繧ｶ縺ｧ遒ｺ隱搾ｼ・
+## 公開
 
-```bash
-# Python 3
-python3 -m http.server 8000
+既存のGitHub Pagesが `main` ブランチのルートを公開します。変更を `main` にpushし、GitHub Actionsの「pages build and deployment」が成功した後に公開サイトを確認します。
 
-# 縺ｾ縺溘・ Node.js (http-server)
-npx http-server -p 8000
-```
+CSS・JavaScript・共通パーツの変更時は、HTML内の `?v=20260924` と `js/common.js` の共通パーツ取得用バージョンを更新してキャッシュを切り替えます。
 
-http://localhost:8000 縺ｫ繧｢繧ｯ繧ｻ繧ｹ
+`404.html` のbase URLは本番の `/TabiCamp/` です。公開パスを変更するときは併せて更新してください。
 
-## GitHub Pages縺ｧ蜈ｬ髢・
+## 記事の追加
 
-1. GitHub縺ｫ繝励ャ繧ｷ繝･
-2. Settings 竊・Pages
-3. Source: `main` 繝悶Λ繝ｳ繝√～/ (root)` 繧帝∈謚・
+詳細は [AGENTS.md](./AGENTS.md) を参照してください。
 
-繧ｵ繧､繝・RL: https://yamazaki2357.github.io/camp-site/
+1. 記事HTMLと専用画像を作成し、カテゴリ・タグを決定します。
+2. `categories.html` と `tags.html` の記事一覧・件数を更新します。
+3. トップの最新記事（6件）とカテゴリ・人気タグのダイジェストを更新します。
+4. 記事カードには原則 `card-720x450.webp` を使い、画像のalt・width・heightを記載します。
+5. PC・スマートフォンで表示、内部リンク、共通ナビゲーションを確認します。
 
-## 險倅ｺ九・霑ｽ蜉譁ｹ豕・
+## お問い合わせ
 
-1. **險倅ｺ九ョ繧｣繝ｬ繧ｯ繝医Μ繧剃ｽ懈・**: `posts/YYYY-MM-DD-slug/` 繧剃ｽ懈・
-2. **險倅ｺ稀TML繧剃ｽ懈・**: `posts/YYYY-MM-DD-slug/index.html` 繧帝・鄂ｮ・域里蟄倩ｨ倅ｺ九ｒ蜿り・↓・・
-3. **逕ｻ蜒上ｒ驟咲ｽｮ**: 蜷後ヵ繧ｩ繝ｫ繝縺ｫ `images/` 繧剃ｽ懈・縺励∬ｨ倅ｺ狗判蜒上ｒ譬ｼ邏・
-4. **繝医ャ繝励・繝ｼ繧ｸ縺ｫ霑ｽ蜉**: `index.html` 縺ｮ `.posts-grid` 縺ｫ險倅ｺ九き繝ｼ繝峨ｒ霑ｽ蜉
-5. **繧ｫ繝・ざ繝ｪ繝壹・繧ｸ繧呈峩譁ｰ**: `categories.html` 縺ｮ隧ｲ蠖薙き繝・ざ繝ｪ繧ｻ繧ｯ繧ｷ繝ｧ繝ｳ縺ｫ險倅ｺ九Μ繝ｳ繧ｯ繧定ｿｽ蜉
-6. **・井ｻｻ諢擾ｼ峨ち繧ｰ繝壹・繧ｸ繧呈峩譁ｰ**: `tags.html` 縺ｮ繧ｿ繧ｰ繧ｯ繝ｩ繧ｦ繝峨→險倅ｺ倶ｸ隕ｧ繧呈峩譁ｰ
-
-隧ｳ邏ｰ縺ｯ [CLAUDE.md](./CLAUDE.md) 縺ｮ縲後ヶ繝ｭ繧ｰ險倅ｺ倶ｽ懈・繧ｬ繧､繝峨Λ繧､繝ｳ縲阪ｒ蜿ら・縲・
-
-## 繝ｩ繧､繧ｻ繝ｳ繧ｹ
-
-MIT License
-
+現在は「お問い合わせ窓口は準備中」と表示しています。受付開始時に `contact.html`、`about.html`、`privacy.html` の案内を更新してください。

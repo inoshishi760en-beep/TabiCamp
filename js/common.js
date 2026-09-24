@@ -1,480 +1,148 @@
-﻿function getRootPrefix() {
-  try {
-    const meta = document.querySelector('meta[name="site-root"]');
-    if (meta && meta.content != null) {
-      return meta.content;
-    }
-    // Prefer deriving from main.css link to be robust across local/GH Pages
-    const mainLink = document.querySelector('link[href*="assets/css/main.css"]');
-    if (mainLink) {
-      const href = mainLink.getAttribute('href') || '';
-      const marker = 'assets/css/main.css';
-      const pos = href.indexOf(marker);
-      if (pos >= 0) {
-        return href.slice(0, pos); // e.g. '../../' or ''
-      }
-    }
-    // Fallback: compute by path depth
-    const segs = window.location.pathname.split('/').filter(Boolean);
-    const depth = Math.max(0, segs.length - 2);
-    return '../'.repeat(depth);
-  } catch (_) {
-    return '';
-  }
+function getRootPrefix() {
+  return document.querySelector('meta[name="site-root"]')?.content ?? '';
 }
 
-function ensureFaviconLinks() {
+async function loadComponent(elementId, file) {
+  const target = document.getElementById(elementId);
+  if (!target) return;
+  const prefix = getRootPrefix();
   try {
-    if (!document || !document.head) return;
-    const prefix = getRootPrefix();
-    const config = [
-      { rel: 'icon', type: 'image/svg+xml', href: 'assets/img/favicon.svg' },
-      { rel: 'icon', type: 'image/png', sizes: '32x32', href: 'assets/img/favicon-32.png' },
-      { rel: 'icon', type: 'image/png', sizes: '48x48', href: 'assets/img/favicon-48.png' },
-      { rel: 'apple-touch-icon', sizes: '180x180', href: 'assets/img/favicon-180.png' },
-      { rel: 'icon', type: 'image/x-icon', href: 'favicon.ico' },
-    ];
-
-    config.forEach(def => {
-      const selectorParts = [`link[rel="${def.rel}"]`];
-      if (def.sizes) selectorParts.push(`[sizes="${def.sizes}"]`);
-      if (def.type) selectorParts.push(`[type="${def.type}"]`);
-      const selector = selectorParts.join('');
-      const existing = document.head.querySelector(selector);
-      const link = existing || document.createElement('link');
-      link.rel = def.rel;
-      if (def.type) link.type = def.type;
-      if (def.sizes) link.sizes = def.sizes;
-      link.href = `${prefix}${def.href}`;
-      if (!existing) {
-        document.head.appendChild(link);
-      }
-    });
+    const response = await fetch(prefix + file + '?v=20260924');
+    if (!response.ok) throw new Error(`HTTP ${response.status}`);
+    target.innerHTML = await response.text();
   } catch (error) {
-    console.error('Failed to ensure favicon links', error);
+    console.error(`共通パーツを読み込めませんでした: ${file}`, error);
+    target.innerHTML = elementId === 'header-placeholder'
+      ? '<header class="site-header"><nav class="container header-inner" aria-label="メインナビゲーション"><a class="site-title" href="index.html">お湯キャン△</a><a href="categories.html">記事一覧</a><a href="about.html">このサイトについて</a></nav></header>'
+      : '<footer class="site-footer"><div class="container"><p>お湯キャン△</p><a href="privacy.html">プライバシーポリシー</a></div></footer>';
   }
-}
-
-function getInlineComponentHtml(elementId) {
-  if (elementId === 'header-placeholder') {
-    return `
-<header class="site-header">
-  <div class="container">
-    <div class="header-inner">
-      <div class="site-branding">
-        <a href="index.html" class="site-title">Camp Site</a>
-      </div>
-
-      <button class="nav-toggle" type="button" aria-label="メニューを開く" aria-expanded="false" aria-controls="site-nav">
-        <span class="nav-toggle-bar"></span>
-        <span class="nav-toggle-bar"></span>
-        <span class="nav-toggle-bar"></span>
-      </button>
-
-      <nav class="site-nav" id="site-nav" aria-label="メインナビゲーション">
-        <a href="index.html">ホーム</a>
-        <a href="categories.html">カテゴリ</a>
-        <a href="about.html">このサイトについて</a>
-        <a href="contact.html">お問い合わせ</a>
-      </nav>
-    </div>
-  </div>
-</header>`;
-  }
-  if (elementId === 'footer-placeholder') {
-    return `
-<footer class="site-footer">
-  <div class="container">
-    <div class="footer-content">
-      <div class="footer-section">
-        <h3>Camp Site</h3>
-        <p>キャンプ場レビューとアウトドア情報を発信するブログです。</p>
-      </div>
-
-      <div class="footer-section">
-        <h3>リンク</h3>
-        <ul class="footer-links">
-          <li><a href="about.html">このサイトについて</a></li>
-          <li><a href="contact.html">お問い合わせ</a></li>
-          <li><a href="privacy.html">プライバシーポリシー</a></li>
-        </ul>
-      </div>
-    </div>
-
-    <div class="footer-bottom">
-      <p>&copy; <span id="current-year"></span> Camp Site. All rights reserved.</p>
-    </div>
-  </div>
-</footer>`;
-  }
-}
-
-document.addEventListener('DOMContentLoaded', async function() {
-  ensureFaviconLinks();
-  if (document.getElementById('header-placeholder')) {
-    await loadComponent('header-placeholder', 'includes/header.html');
-  }
-  if (document.getElementById('footer-placeholder')) {
-    await loadComponent('footer-placeholder', 'includes/footer.html');
-  }
-  updateFooterYear();
-
-  setActiveNav();
-  setupNavToggle();
-
-  setupBackToTop();
-
-  setupScrollAnimations();
-  setupHeaderAutoHide();
-  setupScrollProgress();
-  setupGroupedListCollapse();
-  setupParallaxHeader();
-  setupGuideHelper();
-  prefixInternalLinks();
-});
-
-function setupGroupedListCollapse() {
-  const MAX_VISIBLE = 5;
-  const groups = document.querySelectorAll('.categories-list .category-item');
-  if (groups.length === 0) return;
-
-  groups.forEach(group => {
-    const list = group.querySelector('ul');
-    if (!list) return;
-
-    const items = Array.from(list.querySelectorAll('li'));
-    const total = items.length;
-    if (total <= MAX_VISIBLE) return;
-
-    const countEl = group.querySelector('p');
-    if (countEl) {
-    }
-
-    items.forEach((li, index) => {
-      if (index >= MAX_VISIBLE) {
-        li.classList.add('is-collapsed');
-      }
-    });
-
-    const toggle = document.createElement('button');
-    toggle.type = 'button';
-    toggle.className = 'category-toggle';
-    toggle.textContent = `${total}件すべて表示`;
-
-    let expanded = false;
-    toggle.addEventListener('click', () => {
-      expanded = !expanded;
-      items.forEach((li, index) => {
-        if (index >= MAX_VISIBLE) {
-          li.classList.toggle('is-collapsed', !expanded);
-        }
-      });
-      toggle.textContent = expanded ? '折りたたむ' : `${total}件すべて表示`;
-    });
-
-    group.appendChild(toggle);
+  target.querySelectorAll('a[href]').forEach(link => {
+    const href = link.getAttribute('href');
+    if (!/^(?:[a-z]+:|\/|#|\.\.\/)/i.test(href)) link.setAttribute('href', prefix + href);
   });
 }
 
-function setActiveNav() {
-  const getPage = (path) => {
-    const seg = path.split('?')[0].split('#')[0].split('/').filter(Boolean);
-    const last = seg[seg.length - 1] || '';
-    return last === '' ? 'index.html' : last;
-  };
-
-  const currentPage = getPage(window.location.pathname);
-  const navLinks = document.querySelectorAll('.site-nav a');
-
-  navLinks.forEach(link => {
-    const linkPage = getPage(new URL(link.href, window.location.href).pathname);
-    if (currentPage === linkPage) {
-      link.classList.add('active');
+function setupNavigation() {
+  const normalPath = path => path.replace(/index\.html$/, '').replace(/\/$/, '');
+  document.querySelectorAll('.site-nav a:not(.nav-cta)').forEach(link => {
+    if (normalPath(new URL(link.href).pathname) === normalPath(location.pathname)) {
+      link.setAttribute('aria-current', 'page');
     }
   });
-}
-
-function setupNavToggle() {
   const toggle = document.querySelector('.nav-toggle');
   const nav = document.querySelector('.site-nav');
   if (!toggle || !nav) return;
-
-  const update = (open) => {
-    toggle.classList.toggle('is-open', open);
-    nav.classList.toggle('is-open', open);
-    toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+  const close = () => {
+    nav.classList.remove('is-open');
+    toggle.setAttribute('aria-expanded', 'false');
+    toggle.setAttribute('aria-label', 'メニューを開く');
   };
-
-  let isOpen = false;
   toggle.addEventListener('click', () => {
-    isOpen = !isOpen;
-    update(isOpen);
+    const open = toggle.getAttribute('aria-expanded') !== 'true';
+    nav.classList.toggle('is-open', open);
+    toggle.setAttribute('aria-expanded', String(open));
+    toggle.setAttribute('aria-label', open ? 'メニューを閉じる' : 'メニューを開く');
   });
-
-  nav.querySelectorAll('a').forEach(link => {
-    link.addEventListener('click', () => {
-      if (isOpen) {
-        isOpen = false;
-        update(false);
-      }
-    });
-  });
-}
-
-function setupBackToTop() {
-  const btn = document.createElement('button');
-  btn.className = 'back-to-top';
-  btn.setAttribute('aria-label', 'Back to top');
-  btn.innerHTML = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5l7 7-1.41 1.41L13 9.83V19h-2V9.83L6.41 13.41 5 12z"/></svg>';
-  document.body.appendChild(btn);
-
-  function toggle() {
-    if (window.scrollY > 400) {
-      btn.classList.add('show');
-    } else {
-      btn.classList.remove('show');
+  document.addEventListener('keydown', event => {
+    if (event.key === 'Escape' && toggle.getAttribute('aria-expanded') === 'true') {
+      close();
+      toggle.focus();
     }
-  }
-
-  window.addEventListener('scroll', toggle, { passive: true });
-  toggle();
-
-  btn.addEventListener('click', () => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
   });
-}
-
-function prefixInternalLinks() {
-  const prefix = getRootPrefix();
-  const anchors = document.querySelectorAll('.site-nav a, .footer-links a, .site-branding a');
-  anchors.forEach(a => {
-    const href = a.getAttribute('href') || '';
-    if (!href) return;
-    // 外部/フラグメンチEプロトコル付きは対象夁E
-    if (/^(https?:|mailto:|tel:|#)/.test(href)) return;
-    if (/^(\.\.\/|\.\/)/.test(href)) return;
-    // 先頭に接頭辞を付丁E
-    a.setAttribute('href', prefix + href);
+  document.addEventListener('click', event => {
+    if (!event.target.closest('.site-header')) close();
   });
+  nav.addEventListener('click', event => { if (event.target.closest('a')) close(); });
+  window.matchMedia('(min-width: 761px)').addEventListener('change', close);
 }
 
-function updateFooterYear() {
-  const el = document.getElementById('current-year');
-  if (el) el.textContent = new Date().getFullYear();
-}
-
-function setupScrollAnimations() {
-  const targets = [
-    ...document.querySelectorAll('.post-card'),
-    ...document.querySelectorAll('.category-item'),
-    ...document.querySelectorAll('.quick-link'),
-    ...document.querySelectorAll('.footer-section'),
-    ...document.querySelectorAll('.tags-cloud .tag-item')
-  ];
-
-  if (targets.length === 0) return;
-
-  targets.forEach((el, i) => {
-    el.classList.add('reveal');
-    if (i % 3 === 0) el.classList.add('from-left');
-    else if (i % 3 === 1) el.classList.add('from-right');
-    else el.classList.add('zoom');
-  });
-
-  const prefersReduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  if (prefersReduce || ('IntersectionObserver' in window === false)) {
-    targets.forEach(el => el.classList.add('in'));
-    return;
-  }
-
-  const io = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('in');
-        io.unobserve(entry.target);
-      }
-    });
-  }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
-
-  targets.forEach(el => io.observe(el));
-}
-
-// ヘッダーの自動隠ぁE表示
-function setupHeaderAutoHide() {
-  const header = document.querySelector('.site-header');
-  if (!header) return;
-  let lastY = window.scrollY;
-  let ticking = false;
-
-  function onScroll() {
-    const y = window.scrollY;
-    const goingDown = y > lastY;
-    const beyond = y > 120;
-    if (goingDown && beyond) header.classList.add('hide');
-    else header.classList.remove('hide');
-    lastY = y;
-    ticking = false;
-  }
-
-  window.addEventListener('scroll', () => {
-    if (!ticking) {
-      window.requestAnimationFrame(onScroll);
-      ticking = true;
-    }
-  }, { passive: true });
-}
-
-// スクロール進捗バー
-function setupScrollProgress() {
-  const bar = document.createElement('div');
-  bar.className = 'scroll-progress';
-  document.body.appendChild(bar);
-
-  function update() {
-    const scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
-    const h = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-    const p = h > 0 ? (scrollTop / h) * 100 : 0;
-    bar.style.width = p + '%';
-  }
-
-  window.addEventListener('scroll', update, { passive: true });
-  window.addEventListener('resize', update);
-  update();
-}
-
-function setupParallaxHeader() {
-  const hero = document.querySelector('.page-header');
-  if (!hero) return;
-
-  let ticking = false;
-  function update() {
-    const rect = hero.getBoundingClientRect();
-    if (rect.bottom > 0 && rect.top < window.innerHeight) {
-      const factor = Math.min(1, Math.max(0, (window.innerHeight - rect.top) / (window.innerHeight + rect.height)));
-      const y = Math.round((factor * 20) - 10); // -10px 、E+10px 程度
-      hero.style.backgroundPosition = `center ${y}px`;
-    }
-    ticking = false;
-  }
-
-  function onScroll() {
-    if (!ticking) {
-      window.requestAnimationFrame(update);
-      ticking = true;
-    }
-  }
-
-  window.addEventListener('scroll', onScroll, { passive: true });
-  window.addEventListener('resize', onScroll);
-  update();
-}
-
-function setupGuideHelper() {
-  try {
-    const prefix = getRootPrefix();
-    const fallback =
-      'data:image/svg+xml;utf8,' +
-      encodeURIComponent(
-        '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 260" role="img" aria-label="camp guide helper"><defs><linearGradient id="a" x1="0%" y1="0%" x2="0%" y2="100%"><stop offset="0%" stop-color="%232fa7c8"/><stop offset="100%" stop-color="%235ac8fa"/></linearGradient></defs><g fill="none" fill-rule="evenodd"><circle cx="90" cy="80" r="70" fill="url(#a)" opacity="0.9"/><path fill="#fff" fill-opacity="0.9" d="M44 188c0-25 20-45 45-45h12c25 0 45 20 45 45v36c0 5-4 9-9 9H53c-5 0-9-4-9-9v-36Z"/><path stroke="%23000" stroke-opacity="0.1" stroke-width="6" stroke-linecap="round" d="M70 120c10 10 26 10 36 0"/><circle cx="70" cy="78" r="10" fill="#0f172a"/><circle cx="112" cy="78" r="10" fill="#0f172a"/><path stroke="#0f172a" stroke-width="5" stroke-linecap="round" d="M82 180h28"/></g></svg>'
-      );
-    const container = document.createElement('div');
-    container.className = 'guide-helper';
-
-    container.innerHTML = `
-      <div class="guide-bubble" role="status" aria-live="polite">
-        <p>キャンプの疑問があればここからどうぞ！タップで開閉できます。</p>
-        <button type="button" class="guide-close" aria-label="案内を閉じる">×</button>
-      </div>
-      <button class="guide-avatar" type="button" aria-label="案内キャラクター">
-        <img src="${prefix}assets/img/guide-sloth.png" alt="キャンプ案内キャラクター">
-      </button>
-    `;
-
-    const bubble = container.querySelector('.guide-bubble');
-    const avatar = container.querySelector('.guide-avatar');
-    const closeBtn = container.querySelector('.guide-close');
-    const img = container.querySelector('img');
-    let triedFallback = false;
-
-    let autoHide = setTimeout(() => bubble.classList.remove('show'), 4500);
-
-    const toggle = () => {
-      const willShow = !bubble.classList.contains('show');
-      bubble.classList.toggle('show', willShow);
-      if (willShow) {
-        clearTimeout(autoHide);
-        autoHide = setTimeout(() => bubble.classList.remove('show'), 6000);
-      }
+function setupGroupedListCollapse() {
+  document.querySelectorAll('.categories-list .category-item').forEach((group, index) => {
+    const list = group.querySelector('ul');
+    if (!list) return;
+    const items = [...list.children];
+    if (items.length <= 5) return;
+    list.id ||= `article-group-${index}`;
+    const button = document.createElement('button');
+    button.type = 'button';
+    button.className = 'category-toggle';
+    button.setAttribute('aria-controls', list.id);
+    const update = expanded => {
+      items.forEach((item, i) => item.classList.toggle('is-collapsed', !expanded && i >= 5));
+      button.setAttribute('aria-expanded', String(expanded));
+      button.textContent = expanded ? '折りたたむ' : `${items.length}件すべて表示`;
     };
-
-    avatar.addEventListener('click', toggle);
-    closeBtn.addEventListener('click', () => bubble.classList.remove('show'));
-
-    img.addEventListener('error', () => {
-      if (triedFallback) {
-        container.remove();
-        return;
-      }
-      triedFallback = true;
-      img.src = fallback;
-    });
-
-    document.body.appendChild(container);
-    bubble.classList.add('show');
-  } catch (error) {
-    console.error('guide helper setup failed', error);
-  }
+    update(false);
+    button.addEventListener('click', () => update(button.getAttribute('aria-expanded') !== 'true'));
+    group.appendChild(button);
+  });
 }
 
 function generateTOC() {
-  const content = document.querySelector('.post-content');
-  const tocContainer = document.querySelector('.table-of-contents ul');
-
-  if (!content || !tocContainer) return;
-
-  const headings = content.querySelectorAll('h2');
-
-  if (headings.length === 0) {
-    const tocElement = document.querySelector('.table-of-contents');
-    if (tocElement) tocElement.style.display = 'none';
-    return;
-  }
-
-  headings.forEach((heading, index) => {
-    const id = `heading-${index}`;
-    heading.id = id;
-
-    const li = document.createElement('li');
-    const a = document.createElement('a');
-    a.href = `#${id}`;
-    a.textContent = heading.textContent;
-    li.appendChild(a);
-    tocContainer.appendChild(li);
+  const list = document.querySelector('.table-of-contents ul');
+  if (!list) return;
+  list.replaceChildren();
+  document.querySelectorAll('.post-content h2').forEach((heading, index) => {
+    if (!heading.id) {
+      let id = `heading-${index}`;
+      while (document.getElementById(id)) id += '-section';
+      heading.id = id;
+    }
+    const item = document.createElement('li');
+    const link = document.createElement('a');
+    link.href = `#${heading.id}`;
+    link.textContent = heading.textContent;
+    item.appendChild(link);
+    list.appendChild(item);
   });
 }
 
-// スムーズスクロール
-document.addEventListener('DOMContentLoaded', function() {
-  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function (e) {
-      e.preventDefault();
-      const target = document.querySelector(this.getAttribute('href'));
-      if (target) {
-        target.scrollIntoView({
-          behavior: 'smooth',
-          block: 'start'
-        });
-      }
-    });
-  });
-
-  if (document.querySelector('.post-content')) {
-    generateTOC();
+function setupReadingTools() {
+  const button = document.createElement('button');
+  button.className = 'back-to-top';
+  button.type = 'button';
+  button.textContent = '↑';
+  button.setAttribute('aria-label', 'ページの先頭へ戻る');
+  button.hidden = true;
+  button.addEventListener('click', () => window.scrollTo({ top: 0, behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'instant' : 'smooth' }));
+  document.body.appendChild(button);
+  const bar = document.querySelector('.post-header') ? document.createElement('div') : null;
+  if (bar) {
+    bar.className = 'scroll-progress';
+    bar.setAttribute('aria-hidden', 'true');
+    document.body.appendChild(bar);
   }
+  const update = () => {
+    button.hidden = window.scrollY < 500;
+    if (bar) {
+      const height = document.documentElement.scrollHeight - innerHeight;
+      bar.style.width = `${height > 0 ? window.scrollY / height * 100 : 0}%`;
+    }
+  };
+  addEventListener('scroll', update, { passive: true });
+  addEventListener('resize', update);
+  update();
+}
+
+document.addEventListener('DOMContentLoaded', async () => {
+  const main = document.querySelector('main');
+  if (main) {
+    main.id ||= 'main-content';
+    main.tabIndex = -1;
+  }
+  const icon = document.createElement('link');
+  icon.rel = 'icon';
+  icon.type = 'image/svg+xml';
+  icon.href = getRootPrefix() + 'assets/img/favicon.svg';
+  if (!document.querySelector('link[rel="icon"]')) document.head.appendChild(icon);
+  generateTOC();
+  setupGroupedListCollapse();
+  setupReadingTools();
+  await Promise.all([
+    loadComponent('header-placeholder', 'includes/header.html'),
+    loadComponent('footer-placeholder', 'includes/footer.html')
+  ]);
+  const year = document.getElementById('current-year');
+  if (year) year.textContent = new Date().getFullYear();
+  setupNavigation();
 });
-
-
-
-
-
-
